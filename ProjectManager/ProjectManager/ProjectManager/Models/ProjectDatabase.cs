@@ -9,24 +9,27 @@ namespace ProjectManager.Models
 {
     public class ProjectDatabase
     {
-
+        //Connection
         private SQLiteAsyncConnection database;     
         public ProjectDatabase(string dbPath)      
         {                                          
             database = new SQLiteAsyncConnection(dbPath); 
             database.CreateTableAsync<Project>().Wait(); 
-        } 
+        }
 
-        public Task<List<Project>> GetItemsAsync()     
+        //Get table in List.
+        public Task<List<T>> GetItemsAsync<T>() where T : new()     
         {              
-            return database.Table<Project>().ToListAsync();   
+            return database.Table<T>().ToListAsync();   
         }    
 
+        //Get class instance from database.
         public Task<Project> GetItemAsync(int id)        
         {                       
             return database.Table<Project>().Where(i => i.ID == id).FirstOrDefaultAsync();  
         }       
 
+        //Inserting/Updating data to database.
         public Task<int> SaveItemAsync(Project item) 
         {           
             if (item.ID != 0)   
@@ -39,7 +42,8 @@ namespace ProjectManager.Models
             }   
         } 
 
-        public Task<int> DeleteItemAsync(Project item)    
+        //Deleting.
+        public Task<int> DeleteItemAsync<T>(T item)    
         {                    
             return database.DeleteAsync(item); 
         }

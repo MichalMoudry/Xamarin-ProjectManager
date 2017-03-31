@@ -16,25 +16,36 @@ namespace ProjectManager
         {
             InitializeComponent();
             addProjPopup.IsVisible = false;
-            projStartDate.MaximumDate = DateTime.Now;
+            projStartDate.MinimumDate = DateTime.Now;
+            projects = new ObservableCollection<Project>(App.ProjDatabase.GetItemsAsync<Project>().Result);
+            projectsList.ItemsSource = projects;
         }
 
         Project proj;
+        ObservableCollection<Project> projects;
 
+        //Method for adding projects.
         private async void AddProject(object sender, EventArgs e)
         {
             if (CheckProjectSubmitForm())
             {
+                //Setting new instance of project class.
                 proj = new Project();
                 proj.Name = projName.Text;
                 proj.StartDate = projStartDate.Date;
                 proj.EndDate = projEndDate.Date;
 
-                await App.ProjDatabase.SaveItemAsync(proj);
+                //Adding proj. instance to observable coll.             
+                projects.Add(proj);
+                DisableUI();
+                await App.ProjDatabase.SaveItemAsync(proj);         
+                EnableUI();
             }
             else
             {
+                DisableUI();
                 await DisplayAlert("Error", "Fill form correctly...", "Ok");
+                EnableUI();
             }
         }
 

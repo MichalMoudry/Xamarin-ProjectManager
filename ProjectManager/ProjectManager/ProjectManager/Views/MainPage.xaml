@@ -11,19 +11,23 @@
         </Frame>
 
         <ListView x:Name="projectsList">
-            <!--<ListView.ItemTemplate>
-                    <DataTemplate>
+            <ListView.ItemTemplate>
+                <DataTemplate>
 
-                        <ViewCell>
-                            <StackLayout Orientation="Horizontal" HeightRequest="30">
-                                <Label Text="{Binding ID}" />
-                                <Label Text="." />
-                                <Label Text="{Binding Name}" />
+                    <ViewCell>
+                        <StackLayout>
+                            <Label HeightRequest="15" />
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding ID}" TextColor="White" />
+                                <Label Text="." TextColor="White" />
+                                <Label Text="{Binding Name}" TextColor="White" />
                             </StackLayout>
-                        </ViewCell>
+                            <Label HeightRequest="15" />
+                        </StackLayout>
+                    </ViewCell>
 
-                    </DataTemplate>
-                </ListView.ItemTemplate>-->
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
 
         <AbsoluteLayout>
