@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using SQLite;
 using System.Collections.ObjectModel;
 using ProjectManager.Models;
+using ProjectManager.ViewModels;
 
 namespace ProjectManager
 {
@@ -17,12 +18,15 @@ namespace ProjectManager
             InitializeComponent();
             addProjPopup.IsVisible = false;
             projStartDate.MinimumDate = DateTime.Now;
-            projects = new ObservableCollection<Project>(App.ProjDatabase.GetItemsAsync<Project>().Result);
+
+            projectDatabase = new ProjectDatabaseViewModel();
+            projects = new ObservableCollection<Project>(projectDatabase.LoadData());
             projectsList.ItemsSource = projects;
         }
 
         Project proj;
         ObservableCollection<Project> projects;
+        private ProjectDatabaseViewModel projectDatabase { get; set; }
 
         //Method for adding projects.
         private async void AddProject(object sender, EventArgs e)
@@ -38,7 +42,7 @@ namespace ProjectManager
                 //Adding proj. instance to observable coll.             
                 projects.Add(proj);
                 DisableUI();
-                await App.ProjDatabase.SaveItemAsync(proj);         
+                //await App.ProjDatabase.SaveItemAsync(proj);         
                 EnableUI();
             }
             else

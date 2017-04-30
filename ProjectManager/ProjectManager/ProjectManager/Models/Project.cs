@@ -7,7 +7,7 @@ using SQLite;
 
 namespace ProjectManager.Models
 {
-    public class Project
+    public class Project : Interfaces.IDatabaseTemplate
     {
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }

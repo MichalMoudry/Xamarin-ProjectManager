@@ -31,20 +31,5 @@ namespace ProjectManager
             // Handle when your app resumes
         }
 
-
-        private static ProjectDatabase _projectDatabase; 
-        public static ProjectDatabase ProjDatabase
-        {
-            get
-            {
-                if (_projectDatabase == null)
-                {
-                    _projectDatabase = new ProjectDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("ProjectDatabase.db3"));
-                }
-                return _projectDatabase;
-            }  
-        }
-
-
     }
 }
