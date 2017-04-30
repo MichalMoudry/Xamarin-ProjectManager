@@ -7,7 +7,7 @@ using SQLite;
 
 namespace ProjectManager.Models
 {
-    class Database<T> where T : new()
+    public class Database<T> where T : new()
     {
         //Connection   
         private SQLiteAsyncConnection database;

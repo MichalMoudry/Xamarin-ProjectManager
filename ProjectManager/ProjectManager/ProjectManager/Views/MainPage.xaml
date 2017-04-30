@@ -10,19 +10,23 @@
             <Label Text="Project Manager" TextColor="White" Font="Bold, 26" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
         </Frame>
 
-        <ListView x:Name="projectsList">
+        <ListView x:Name="projectsList" ItemSelected="projectsList_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
 
                     <ViewCell>
                         <StackLayout>
-                            <Label HeightRequest="15" />
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding ID}" TextColor="White" />
-                                <Label Text="." TextColor="White" />
-                                <Label Text="{Binding Name}" TextColor="White" />
+                            <Label HeightRequest="3" />
+                            <StackLayout Orientation="Horizontal" Margin="10,0,0,0">
+                                <Label Text="{Binding Name}" TextColor="White" FontAttributes="Bold" FontSize="19" />
                             </StackLayout>
-                            <Label HeightRequest="15" />
+
+                            <StackLayout Orientation="Horizontal" Margin="10,0,0,0">
+                                <Label Text="{Binding StartDate}" FontSize="11" TextColor="White" />
+                                <Label Text="•" FontSize="11" TextColor="White" />
+                                <Label Text="{Binding EndDate}" FontSize="11" TextColor="White" />
+                            </StackLayout>
+                            <Label HeightRequest="3" />
                         </StackLayout>
                     </ViewCell>
 
@@ -34,15 +38,20 @@
             <Button x:Name="displayPopup" Clicked="displayPopup_Clicked" Text="Add project" BackgroundColor="#2a4254" TextColor="White" AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds=".5,0,130,45" />
         </AbsoluteLayout>
 
-        <Frame x:Name="addProjPopup">
+        <Frame x:Name="addProjPopup" BackgroundColor="#2c4659">
             <StackLayout HorizontalOptions="Center">
+                <Label Text="Name:" TextColor="White" FontSize="16" />
                 <Entry Placeholder="Project name..." x:Name="projName" />
+
+                <Label Text="Start date:" TextColor="White" FontSize="16" />
                 <DatePicker x:Name="projStartDate" />
+
+                <Label Text="End date:" TextColor="White" FontSize="16" />
                 <DatePicker x:Name="projEndDate" />
 
                 <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                    <Button Text="Submit" Clicked="AddProject" x:Name="submitProjectButton" BackgroundColor="#2a4254" WidthRequest="130" HeightRequest="45" TextColor="White" />
-                    <Button Text="Close" Clicked="closePopupButton_Clicked" x:Name="closePopupButton" BackgroundColor="#2a4254" WidthRequest="130" HeightRequest="45" TextColor="White" />
+                    <Button Text="Submit" Clicked="AddProject" x:Name="submitProjectButton" BackgroundColor="#45667d" WidthRequest="130" HeightRequest="45" TextColor="White" />
+                    <Button Text="Close" Clicked="closePopupButton_Clicked" x:Name="closePopupButton" BackgroundColor="#45667d" WidthRequest="130" HeightRequest="45" TextColor="White" />
                 </StackLayout>
             </StackLayout>
         </Frame>

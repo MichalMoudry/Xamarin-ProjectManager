@@ -5,20 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using ProjectManager.Models;
 using Xamarin.Forms;
-using ProjectManager.Interfaces;
 
 namespace ProjectManager.ViewModels
 {
     public class ProjectDatabaseViewModel : Interfaces.IDatabaseViewModel<Project>
     {
         private static Database<Project> _projectDatabase;
-        private static Database<Project> ProjectDatabase
+        public static Database<Project> ProjectDatabase
         {
             get
             {
-                if (_projectDatabase != null)
+                if (_projectDatabase == null)
                 {
-                    _projectDatabase = new Database<Project>(DependencyService.Get<IFileHelper>().GetLocalFilePath("ProjectDatabase.db3"));
+                    _projectDatabase = new Database<Project>(DependencyService.Get<Interfaces.IFileHelper>().GetLocalFilePath("ProjectDatabase.db3"));
                 }
                 return _projectDatabase;
             }

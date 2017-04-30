@@ -18,6 +18,7 @@ namespace ProjectManager
             InitializeComponent();
             addProjPopup.IsVisible = false;
             projStartDate.MinimumDate = DateTime.Now;
+            projEndDate.MinimumDate = DateTime.Now;
 
             projectDatabase = new ProjectDatabaseViewModel();
             projects = new ObservableCollection<Project>(projectDatabase.LoadData());
@@ -42,7 +43,8 @@ namespace ProjectManager
                 //Adding proj. instance to observable coll.             
                 projects.Add(proj);
                 DisableUI();
-                //await App.ProjDatabase.SaveItemAsync(proj);         
+                await projectDatabase.SaveItem(proj);
+                ClearProjectForm();
                 EnableUI();
             }
             else
@@ -87,16 +89,38 @@ namespace ProjectManager
                 return false;
             }
         }
+        /// <summary>
+        /// Metod for clearing inputs in form for adding projects.
+        /// </summary>
+        private void ClearProjectForm()
+        {
+            addProjPopup.IsVisible = false;
+            projName.Text = "";
+            projStartDate.Date = DateTime.Now;
+            projEndDate.Date = DateTime.Now;
+            displayPopup.IsVisible = true;
+        }
 
         //Display popup
         private void displayPopup_Clicked(object sender, EventArgs e)
         {
             addProjPopup.IsVisible = true;
+            displayPopup.IsVisible = false;
+            displayPopup.HeightRequest = 0;
         }
         //Close popup
         private void closePopupButton_Clicked(object sender, EventArgs e)
         {
             addProjPopup.IsVisible = false;
+            displayPopup.IsVisible = true;
+        }
+
+        private void projectsList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (projectsList.SelectedItem != null)
+            {
+                var tempObj = projectsList.SelectedItem as Project;
+            }
         }
     }
 }
