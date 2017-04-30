@@ -16,7 +16,6 @@ namespace ProjectManager
         public MainPage()
         {
             InitializeComponent();
-            addProjPopup.IsVisible = false;
             projStartDate.MinimumDate = DateTime.Now;
             projEndDate.MinimumDate = DateTime.Now;
 
@@ -37,8 +36,8 @@ namespace ProjectManager
                 //Setting new instance of project class.
                 proj = new Project();
                 proj.Name = projName.Text;
-                proj.StartDate = projStartDate.Date;
-                proj.EndDate = projEndDate.Date;
+                proj.StartDate = $"{projStartDate.Date.Day}.{projStartDate.Date.Month}.{projStartDate.Date.Year}";
+                proj.EndDate = $"{projEndDate.Date.Day}.{projEndDate.Date.Month}.{projEndDate.Date.Year}";
 
                 //Adding proj. instance to observable coll.             
                 projects.Add(proj);
@@ -113,6 +112,7 @@ namespace ProjectManager
         {
             addProjPopup.IsVisible = false;
             displayPopup.IsVisible = true;
+            displayPopup.HeightRequest = 45;
         }
 
         private void projectsList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -120,6 +120,8 @@ namespace ProjectManager
             if (projectsList.SelectedItem != null)
             {
                 var tempObj = projectsList.SelectedItem as Project;
+                Navigation.PushModalAsync(new Views.ProjectPage(tempObj));
+                projectsList.SelectedItem = null;
             }
         }
     }

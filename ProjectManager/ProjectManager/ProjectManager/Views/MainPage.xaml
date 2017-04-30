@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:ProjectManager"
-             x:Class="ProjectManager.MainPage">
+             x:Class="ProjectManager.MainPage"
+             BackgroundColor="#395a73">
 
     <StackLayout BackgroundColor="#395a73">
 
@@ -33,12 +34,10 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
-        <AbsoluteLayout>
-            <Button x:Name="displayPopup" Clicked="displayPopup_Clicked" Text="Add project" BackgroundColor="#2a4254" TextColor="White" AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds=".5,0,130,45" />
-        </AbsoluteLayout>
-
-        <Frame x:Name="addProjPopup" BackgroundColor="#2c4659">
+        
+        <Button x:Name="displayPopup" Clicked="displayPopup_Clicked" Text="Add project" BackgroundColor="#2a4254" Margin="0,0,0,10" TextColor="White" WidthRequest="135" HeightRequest="45" HorizontalOptions="Center" VerticalOptions="Center" />
+        
+        <Frame x:Name="addProjPopup" BackgroundColor="#2c4659" IsVisible="False">
             <StackLayout HorizontalOptions="Center">
                 <Label Text="Name:" TextColor="White" FontSize="16" />
                 <Entry Placeholder="Project name..." x:Name="projName" />
@@ -50,8 +49,8 @@
                 <DatePicker x:Name="projEndDate" />
 
                 <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                    <Button Text="Submit" Clicked="AddProject" x:Name="submitProjectButton" BackgroundColor="#45667d" WidthRequest="130" HeightRequest="45" TextColor="White" />
-                    <Button Text="Close" Clicked="closePopupButton_Clicked" x:Name="closePopupButton" BackgroundColor="#45667d" WidthRequest="130" HeightRequest="45" TextColor="White" />
+                    <Button Text="Submit" Clicked="AddProject" x:Name="submitProjectButton" BackgroundColor="#45667d" WidthRequest="135" HeightRequest="45" TextColor="White" />
+                    <Button Text="Close" Clicked="closePopupButton_Clicked" x:Name="closePopupButton" BackgroundColor="#45667d" WidthRequest="135" HeightRequest="45" TextColor="White" />
                 </StackLayout>
             </StackLayout>
         </Frame>
