@@ -8,9 +8,12 @@ using SQLite;
 using System.Collections.ObjectModel;
 using ProjectManager.Models;
 using ProjectManager.ViewModels;
+using Xamarin.Forms.Xaml;
 
-namespace ProjectManager
+namespace ProjectManager.Views
 {
+
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : ContentPage
     {
         public MainPage()
@@ -44,16 +47,14 @@ namespace ProjectManager
                 DisableUI();
                 await projectDatabase.SaveItem(proj);
                 ClearProjectForm();
+                await DisplayAlert("Add a project", "Project was successfully added.", "Ok");
                 EnableUI();
             }
             else
             {
-                DisableUI();
                 await DisplayAlert("Error", "Fill form correctly...", "Ok");
-                EnableUI();
             }
         }
-
         /// <summary>
         /// Method for disabling buttons and listview on page.
         /// </summary>
@@ -79,7 +80,7 @@ namespace ProjectManager
         /// <returns></returns>
         private bool CheckProjectSubmitForm()
         {
-            if (string.IsNullOrEmpty(projName.Text).Equals(false) && projEndDate != null && projStartDate != null)
+            if (string.IsNullOrEmpty(projName.Text).Equals(false) && projEndDate != null && projStartDate != null && projEndDate.Date.CompareTo(projStartDate.Date).Equals(0))
             {
                 return true;
             }
@@ -124,5 +125,6 @@ namespace ProjectManager
                 projectsList.SelectedItem = null;
             }
         }
+
     }
 }

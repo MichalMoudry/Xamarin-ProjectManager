@@ -10,11 +10,30 @@
         </Frame>
 
         <ListView x:Name="taskList">
-        </ListView>
+            <ListView.ItemTemplate>
+                <DataTemplate>
 
-        <StackLayout>
-            <Button x:Name="addTaskButton" Clicked="addTaskButton_Clicked" Text="Add task" BackgroundColor="#2a4254" TextColor="White" WidthRequest="135" HeightRequest="45" HorizontalOptions="Center" VerticalOptions="Center" />
-        </StackLayout>
+                    <ViewCell>
+                        <StackLayout>
+                            <Label HeightRequest="3" />
+                            <StackLayout Orientation="Horizontal" Margin="10,0,0,0">
+                                <Label Text="{Binding Name}" TextColor="White" FontAttributes="Bold" FontSize="19" />
+                            </StackLayout>
+
+                            <StackLayout Orientation="Horizontal" Margin="10,0,0,0">
+                                <Label Text="{Binding StartDate}" FontSize="11" TextColor="White" />
+                                <Label Text="•" FontSize="11" TextColor="White" />
+                                <Label Text="{Binding EndDate}" FontSize="11" TextColor="White" />
+                            </StackLayout>
+                            <Label HeightRequest="3" />
+                        </StackLayout>
+                    </ViewCell>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+        <Button x:Name="addTaskButton" Clicked="addTaskButton_Clicked" Text="Add task" BackgroundColor="#2a4254" TextColor="White" WidthRequest="135" HeightRequest="45" HorizontalOptions="Center" VerticalOptions="Center" />
 
         <Frame x:Name="addTaskPopup" BackgroundColor="#2c4659" IsVisible="False">
             <StackLayout HorizontalOptions="Center">
@@ -28,8 +47,8 @@
                 <DatePicker x:Name="taskEndDate" />
 
                 <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                    <Button x:Name="submitTaskButton" Text="Submit" BackgroundColor="#45667d" WidthRequest="135" HeightRequest="45" TextColor="White" />
-                    <Button x:Name="closePopupButton" Text="Close" BackgroundColor="#45667d" WidthRequest="135" HeightRequest="45" TextColor="White" />
+                    <Button x:Name="submitTaskButton" Clicked="submitTaskButton_Clicked" Text="Submit" BackgroundColor="#45667d" WidthRequest="135" HeightRequest="45" TextColor="White" />
+                    <Button x:Name="closePopupButton" Clicked="closePopupButton_Clicked" Text="Close" BackgroundColor="#45667d" WidthRequest="135" HeightRequest="45" TextColor="White" />
                 </StackLayout>
             </StackLayout>
         </Frame>

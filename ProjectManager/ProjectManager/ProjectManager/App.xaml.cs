@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;   
 using Xamarin.Forms;
-using ProjectManager.Interfaces;
-using ProjectManager.Models;
 
 namespace ProjectManager
 {
@@ -13,7 +11,7 @@ namespace ProjectManager
         public App()
         {
             InitializeComponent();
-            MainPage = new ProjectManager.MainPage();  
+            MainPage = new Views.MainPage();  
         }
 
         protected override void OnStart()

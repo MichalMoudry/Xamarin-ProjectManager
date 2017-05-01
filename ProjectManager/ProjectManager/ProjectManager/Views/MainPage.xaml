@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:ProjectManager"
-             x:Class="ProjectManager.MainPage"
-             BackgroundColor="#395a73">
-
+             x:Class="ProjectManager.Views.MainPage"
+             Title="Main page">
+    
     <StackLayout BackgroundColor="#395a73">
 
         <Frame BackgroundColor="#2c4659">
@@ -34,9 +33,9 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        
-        <Button x:Name="displayPopup" Clicked="displayPopup_Clicked" Text="Add project" BackgroundColor="#2a4254" Margin="0,0,0,10" TextColor="White" WidthRequest="135" HeightRequest="45" HorizontalOptions="Center" VerticalOptions="Center" />
-        
+
+        <Button x:Name="displayPopup" Clicked="displayPopup_Clicked" Text="Add project" BackgroundColor="#2a4254" TextColor="White" WidthRequest="135" HeightRequest="45" HorizontalOptions="Center" />
+
         <Frame x:Name="addProjPopup" BackgroundColor="#2c4659" IsVisible="False">
             <StackLayout HorizontalOptions="Center">
                 <Label Text="Name:" TextColor="White" FontSize="16" />
@@ -56,5 +55,4 @@
         </Frame>
 
     </StackLayout>
-
 </ContentPage>

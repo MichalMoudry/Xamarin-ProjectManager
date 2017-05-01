@@ -11,7 +11,7 @@ namespace ProjectManager.ViewModels
     public class ProjectDatabaseViewModel : Interfaces.IDatabaseViewModel<Project>
     {
         private static Database<Project> _projectDatabase;
-        public static Database<Project> ProjectDatabase
+        private static Database<Project> ProjectDatabase
         {
             get
             {
