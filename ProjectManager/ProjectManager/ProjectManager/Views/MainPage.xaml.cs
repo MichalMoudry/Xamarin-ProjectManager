@@ -45,8 +45,8 @@ namespace ProjectManager.Views
                 //Adding proj. instance to observable coll.             
                 projects.Add(proj);
                 DisableUI();
-                await projectDatabase.SaveItem(proj);
                 ClearProjectForm();
+                await projectDatabase.SaveItem(proj);
                 await DisplayAlert("Add a project", "Project was successfully added.", "Ok");
                 EnableUI();
             }
@@ -80,7 +80,7 @@ namespace ProjectManager.Views
         /// <returns></returns>
         private bool CheckProjectSubmitForm()
         {
-            if (string.IsNullOrEmpty(projName.Text).Equals(false) && projEndDate != null && projStartDate != null && projEndDate.Date.CompareTo(projStartDate.Date).Equals(0))
+            if (string.IsNullOrEmpty(projName.Text).Equals(false) && projEndDate != null && projStartDate != null && projEndDate.Date.CompareTo(projStartDate.Date).Equals(1))
             {
                 return true;
             }

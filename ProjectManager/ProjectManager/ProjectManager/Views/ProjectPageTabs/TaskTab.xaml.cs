@@ -22,9 +22,12 @@ namespace ProjectManager.Views.ProjectPageTabs
             InitializeComponent();
 
             taskDatabase = new ViewModels.ProjTaskDatabaseViewModel();
-            tasks = new ObservableCollection<ProjTask>(taskDatabase.LoadData());
+            tasks = new ObservableCollection<ProjTask>(taskDatabase.GetProjectTasks(projectData.ID));
             taskList.ItemsSource = tasks;
             proj = projectData;
+
+            taskStartDate.MinimumDate = DateTime.Now;
+            taskEndDate.MinimumDate = DateTime.Now;
         }
 
         ObservableCollection<ProjTask> tasks;
@@ -45,7 +48,6 @@ namespace ProjectManager.Views.ProjectPageTabs
             addTaskButton.IsVisible = true;
             addTaskButton.HeightRequest = 45;
         }
-
         private async void submitTaskButton_Clicked(object sender, EventArgs e)
         {
             if (taskFormValidation())
@@ -55,6 +57,7 @@ namespace ProjectManager.Views.ProjectPageTabs
                 projTask.StartDate = $"{taskStartDate.Date.Day}.{taskStartDate.Date.Month}.{taskStartDate.Date.Year}";
                 projTask.EndDate = $"{taskEndDate.Date.Day}.{taskEndDate.Date.Month}.{taskEndDate.Date.Year}";
                 projTask.ProjectID = proj.ID;
+                projTask.IsCompleted = false;
                 tasks.Add(projTask);
                 ClearForm();
                 await taskDatabase.SaveItem(projTask);
@@ -72,7 +75,7 @@ namespace ProjectManager.Views.ProjectPageTabs
         /// <returns>T if form is filled properly, F if  not.</returns>
         private bool taskFormValidation()
         {
-            if (string.IsNullOrEmpty(taskName.Text).Equals(false) && string.IsNullOrEmpty($"{taskStartDate.Date}").Equals(false) && string.IsNullOrEmpty($"{taskEndDate.Date}").Equals(false) && taskEndDate.Date.CompareTo(taskStartDate.Date).Equals(0))
+            if (string.IsNullOrEmpty(taskName.Text).Equals(false) && taskStartDate != null && taskEndDate.Date != null && taskEndDate.Date.CompareTo(taskStartDate.Date).Equals(1))
             {
                 return true;
             }
@@ -91,5 +94,6 @@ namespace ProjectManager.Views.ProjectPageTabs
             taskStartDate.Date = DateTime.Now;
             taskEndDate.Date = DateTime.Now;
         }
+        
     }
 }

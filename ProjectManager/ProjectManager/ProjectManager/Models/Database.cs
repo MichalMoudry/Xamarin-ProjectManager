@@ -53,5 +53,11 @@ namespace ProjectManager.Models
         {
             return database.Table<T>().Where(i => i.Name.Contains(query)).FirstOrDefaultAsync();
         }
+
+        //Task database specific command.
+        public Task<List<T>> GetItemsByID<T>(int id) where T : class, Interfaces.IDatabaseTemplate, new()
+        {
+            return database.QueryAsync<T>($"SELECT * FROM [ProjTask] WHERE [ProjectID] = {id} ORDER BY [StartDate] DESC");
+        }
     }
 }

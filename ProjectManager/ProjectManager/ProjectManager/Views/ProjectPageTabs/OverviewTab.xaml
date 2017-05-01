@@ -10,6 +10,8 @@
             <Label x:Name="projectName" TextColor="White" Font="Bold, 26" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
         </Frame>
 
+        <Label x:Name="projData" TextColor="White" FontSize="16" />
+
         <Button x:Name="backButton" Text="Back" Clicked="backButton_Clicked" HorizontalOptions="Center" BackgroundColor="#2a4254" TextColor="White" WidthRequest="135" HeightRequest="45" />
 
     </StackLayout>

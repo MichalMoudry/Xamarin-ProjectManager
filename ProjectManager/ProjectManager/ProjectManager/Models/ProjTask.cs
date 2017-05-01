@@ -26,6 +26,14 @@ namespace ProjectManager.Models
             set { _projectID = value; }
         }
 
+        private bool _isCompleted;
+        public bool IsCompleted
+        {
+            get { return _isCompleted; }
+            set { _isCompleted = value; }
+        }
+
+
         private string _startDate;
         public string StartDate
         {

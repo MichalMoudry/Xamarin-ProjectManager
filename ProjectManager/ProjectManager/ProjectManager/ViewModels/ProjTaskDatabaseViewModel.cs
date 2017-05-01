@@ -43,5 +43,11 @@ namespace ProjectManager.ViewModels
             var temp = await TaskDatabase.GetItemAsync<ProjTask>(id);
             return temp;
         }
+
+        public List<ProjTask> GetProjectTasks(int projectID)
+        {
+            return TaskDatabase.GetItemsByID<ProjTask>(projectID).Result;
+        }
+
     }
 }

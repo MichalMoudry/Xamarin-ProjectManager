@@ -20,6 +20,7 @@ namespace ProjectManager.Views.ProjectPageTabs
         {
             InitializeComponent();
             projectName.Text = projectData.Name;
+            projData.Text = $"ID: {projectData.ID}\nStart date: {projectData.StartDate}\nEnd Date: {projectData.EndDate}";
         }
 
         private void backButton_Clicked(object sender, EventArgs e)
