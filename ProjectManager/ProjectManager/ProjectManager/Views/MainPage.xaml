@@ -21,10 +21,12 @@
                                 <Label Text="{Binding Name}" TextColor="White" FontAttributes="Bold" FontSize="19" />
                             </StackLayout>
 
-                            <StackLayout Orientation="Horizontal" Margin="10,0,0,0">
+                            <StackLayout Orientation="Horizontal" Margin="10,0,0,5">
                                 <Label Text="{Binding StartDate}" FontSize="11" TextColor="White" />
+                                <!--
                                 <Label Text="•" FontSize="11" TextColor="White" />
                                 <Label Text="{Binding EndDate}" FontSize="11" TextColor="White" />
+                                -->
                             </StackLayout>
                             <Label HeightRequest="3" />
                         </StackLayout>

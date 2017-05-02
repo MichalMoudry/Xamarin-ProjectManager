@@ -75,7 +75,7 @@ namespace ProjectManager.Views.ProjectPageTabs
         /// <returns>T if form is filled properly, F if  not.</returns>
         private bool taskFormValidation()
         {
-            if (string.IsNullOrEmpty(taskName.Text).Equals(false) && taskStartDate != null && taskEndDate.Date != null && taskEndDate.Date.CompareTo(taskStartDate.Date).Equals(1))
+            if (string.IsNullOrEmpty(taskName.Text).Equals(false) && taskStartDate != null && taskEndDate.Date != null && (taskEndDate.Date.CompareTo(taskStartDate.Date).Equals(1) || taskEndDate.Date.CompareTo(taskStartDate.Date).Equals(0)))
             {
                 return true;
             }
@@ -94,6 +94,13 @@ namespace ProjectManager.Views.ProjectPageTabs
             taskStartDate.Date = DateTime.Now;
             taskEndDate.Date = DateTime.Now;
         }
-        
+
+        private void taskList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (taskList.ItemSelected != null)
+            {
+                var tempObj = taskList.ItemSelected as ProjTask;
+            }
+        }
     }
 }

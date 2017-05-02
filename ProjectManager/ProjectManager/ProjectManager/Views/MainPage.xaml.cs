@@ -80,7 +80,7 @@ namespace ProjectManager.Views
         /// <returns></returns>
         private bool CheckProjectSubmitForm()
         {
-            if (string.IsNullOrEmpty(projName.Text).Equals(false) && projEndDate != null && projStartDate != null && projEndDate.Date.CompareTo(projStartDate.Date).Equals(1))
+            if (string.IsNullOrEmpty(projName.Text).Equals(false) && projEndDate != null && projStartDate != null && (projEndDate.Date.CompareTo(projStartDate.Date).Equals(1) || projEndDate.Date.CompareTo(projStartDate.Date).Equals(0)))
             {
                 return true;
             }
@@ -99,6 +99,7 @@ namespace ProjectManager.Views
             projStartDate.Date = DateTime.Now;
             projEndDate.Date = DateTime.Now;
             displayPopup.IsVisible = true;
+            displayPopup.HeightRequest = 45;
         }
 
         //Display popup
