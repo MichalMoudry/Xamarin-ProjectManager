@@ -18,7 +18,12 @@ using ProjectManager.Interfaces;
 [assembly: Dependency(typeof(FileHelper))]
 namespace ProjectManager.Droid
 {
-    class FileHelper
+    class FileHelper : IFileHelper
     {
+        public string GetLocalFilePath(string filename)
+        {
+            string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            return Path.Combine(path, filename);
+        }
     }
 }
