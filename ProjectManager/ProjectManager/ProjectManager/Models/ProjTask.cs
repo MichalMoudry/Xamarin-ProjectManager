@@ -33,7 +33,6 @@ namespace ProjectManager.Models
             set { _isCompleted = value; }
         }
 
-
         private string _startDate;
         public string StartDate
         {

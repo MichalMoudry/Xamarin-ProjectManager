@@ -22,15 +22,17 @@ namespace ProjectManager.Views.ProjectPageTabs
             InitializeComponent();
 
             taskDatabase = new ViewModels.ProjTaskDatabaseViewModel();
-            tasks = new ObservableCollection<ProjTask>(taskDatabase.GetProjectTasks(projectData.ID));
-            taskList.ItemsSource = tasks;
+            
+            unfinishedTasks = new ObservableCollection<ProjTask>(taskDatabase.GetUnfinishedTasks(projectData.ID));
+            
+            unfinishedTaskList.ItemsSource = unfinishedTasks;
             proj = projectData;
 
             taskStartDate.MinimumDate = DateTime.Now;
             taskEndDate.MinimumDate = DateTime.Now;
         }
-
-        ObservableCollection<ProjTask> tasks;
+        
+        ObservableCollection<ProjTask> unfinishedTasks;
         ProjTask projTask;
         Project proj;
         private ViewModels.ProjTaskDatabaseViewModel taskDatabase { get; set; }
@@ -58,7 +60,7 @@ namespace ProjectManager.Views.ProjectPageTabs
                 projTask.EndDate = $"{taskEndDate.Date.Day}.{taskEndDate.Date.Month}.{taskEndDate.Date.Year}";
                 projTask.ProjectID = proj.ID;
                 projTask.IsCompleted = false;
-                tasks.Add(projTask);
+                unfinishedTasks.Add(projTask);
                 ClearForm();
                 await taskDatabase.SaveItem(projTask);
                 await DisplayAlert("Add a task", "Task was successfully added.", "Ok");
@@ -94,13 +96,6 @@ namespace ProjectManager.Views.ProjectPageTabs
             taskStartDate.Date = DateTime.Now;
             taskEndDate.Date = DateTime.Now;
         }
-
-        private void taskList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            if (taskList.ItemSelected != null)
-            {
-                var tempObj = taskList.ItemSelected as ProjTask;
-            }
-        }
+        
     }
 }

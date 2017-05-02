@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectManager.Views.ProjectPageTabs.FinishedTasksTab"
+             Title="Finished Tasks">
+    <StackLayout>
+
+        <Frame BackgroundColor="#2c4659" Margin="0,15,0,0">
+            <Label Text="Tasks" TextColor="White" Font="Bold, 26" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+        </Frame>
+
+        <!--Finished tasks-->
+        <ListView x:Name="taskList" ItemSelected="taskList_ItemSelected">
+            <ListView.Header>
+                <Label Text="Finished tasks" TextColor="White" FontAttributes="Bold" FontSize="19" />
+            </ListView.Header>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout>
+                                <Label HeightRequest="1.5" />
+                                <StackLayout Orientation="Horizontal" Margin="10,0,0,0">
+                                    <Label Text="{Binding Name}" TextColor="White" FontAttributes="Bold" FontSize="19" />
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal" Margin="10,0,0,0">
+                                    <Label Text="{Binding StartDate}" FontSize="11" TextColor="White" />
+                                </StackLayout>
+                                <Label HeightRequest="1.5" />
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </StackLayout>
+</ContentPage>

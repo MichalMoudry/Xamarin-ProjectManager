@@ -122,7 +122,7 @@ namespace ProjectManager.Views
             if (projectsList.SelectedItem != null)
             {
                 var tempObj = projectsList.SelectedItem as Project;
-                Navigation.PushModalAsync(new Views.ProjectPage(tempObj));
+                Navigation.PushModalAsync(new ProjectPage(tempObj));
                 projectsList.SelectedItem = null;
             }
         }

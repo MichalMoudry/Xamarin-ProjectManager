@@ -19,9 +19,15 @@ namespace ProjectManager.Views.ProjectPageTabs
         public OverviewTab(Project projectData)
         {
             InitializeComponent();
+            taskDatabase = new ViewModels.ProjTaskDatabaseViewModel();
+            projectState.Progress = taskDatabase.GetProjectTasks(projectData.ID).Count;
+
             projectName.Text = projectData.Name;
             projData.Text = $"ID: {projectData.ID}\nStart date: {projectData.StartDate}\nEnd Date: {projectData.EndDate}";
+            taskStateLabel.Text = $"Tasks:\n";
         }
+
+        private ViewModels.ProjTaskDatabaseViewModel taskDatabase { get; set; }
 
         private void backButton_Clicked(object sender, EventArgs e)
         {

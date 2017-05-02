@@ -46,8 +46,12 @@ namespace ProjectManager.ViewModels
 
         public List<ProjTask> GetProjectTasks(int projectID)
         {
-            return TaskDatabase.GetItemsByID<ProjTask>(projectID).Result;
+            return TaskDatabase.GetCompletedTasksByID<ProjTask>(projectID).Result;
         }
 
+        public List<ProjTask> GetUnfinishedTasks(int projectID)
+        {
+            return TaskDatabase.GetUnfinishedTasksByID<ProjTask>(projectID).Result;
+        }
     }
 }
