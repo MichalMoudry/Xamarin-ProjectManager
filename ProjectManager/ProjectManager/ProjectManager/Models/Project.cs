@@ -11,8 +11,35 @@ namespace ProjectManager.Models
     {
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
-        public string Name { get; set; }
-        public string StartDate { get; set; }
-        public string EndDate { get; set; }
+
+        private string _name;
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+
+
+        private int _isCompleted;
+        public int IsCompleted
+        {
+            get { return _isCompleted; }
+            set { _isCompleted = value; }
+        }
+
+        private string _startDate;
+        public string StartDate
+        {
+            get { return _startDate; }
+            set { _startDate = value; }
+        }
+
+        private string _endDate;
+        public string EndDate
+        {
+            get { return _endDate; }
+            set { _endDate = value; }
+        }
+
     }
 }

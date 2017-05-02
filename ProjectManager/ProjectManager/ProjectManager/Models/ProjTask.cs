@@ -7,7 +7,7 @@ using SQLite;
 
 namespace ProjectManager.Models
 {
-    class ProjTask : Interfaces.IDatabaseTemplate
+    public class ProjTask : Interfaces.IDatabaseTemplate
     {
         [AutoIncrement, PrimaryKey]
         public int ID { get; set; }
@@ -26,8 +26,8 @@ namespace ProjectManager.Models
             set { _projectID = value; }
         }
 
-        private bool _isCompleted;
-        public bool IsCompleted
+        private int _isCompleted;
+        public int IsCompleted
         {
             get { return _isCompleted; }
             set { _isCompleted = value; }

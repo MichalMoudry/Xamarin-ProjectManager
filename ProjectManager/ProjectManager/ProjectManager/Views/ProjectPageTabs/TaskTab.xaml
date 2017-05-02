@@ -10,7 +10,7 @@
         </Frame>
 
         <!--Unfinished tasks-->
-        <ListView x:Name="unfinishedTaskList">
+        <ListView x:Name="unfinishedTaskList" ItemSelected="unfinishedTaskList_ItemSelected">
             <ListView.Header>
                 <Label Text="Unfinished tasks" FontAttributes="Bold" TextColor="White" FontSize="19" />
             </ListView.Header>
@@ -41,21 +41,23 @@
         <Button x:Name="addTaskButton" Clicked="addTaskButton_Clicked" Text="Add task" BackgroundColor="#2a4254" TextColor="White" WidthRequest="135" HeightRequest="45" HorizontalOptions="Center" VerticalOptions="Center" />
 
         <Frame x:Name="addTaskPopup" BackgroundColor="#2c4659" IsVisible="False">
-            <StackLayout HorizontalOptions="Center">
-                <Label Text="Name:" TextColor="White" FontSize="16" />
-                <Entry Placeholder="Task name..." x:Name="taskName" />
+            <ScrollView MinimumHeightRequest="135" HorizontalOptions="Center">
+                <StackLayout HorizontalOptions="Center">
+                    <Label Text="Name:" TextColor="White" FontSize="16" />
+                    <Entry Placeholder="Task name..." x:Name="taskName" />
 
-                <Label Text="Start date:" TextColor="White" FontSize="16" />
-                <DatePicker x:Name="taskStartDate" />
+                    <Label Text="Start date:" TextColor="White" FontSize="16" />
+                    <DatePicker x:Name="taskStartDate" />
 
-                <Label Text="End date:" TextColor="White" FontSize="16" />
-                <DatePicker x:Name="taskEndDate" />
+                    <Label Text="End date:" TextColor="White" FontSize="16" />
+                    <DatePicker x:Name="taskEndDate" />
 
-                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                    <Button x:Name="submitTaskButton" Clicked="submitTaskButton_Clicked" Text="Submit" BackgroundColor="#45667d" WidthRequest="135" HeightRequest="45" TextColor="White" />
-                    <Button x:Name="closePopupButton" Clicked="closePopupButton_Clicked" Text="Close" BackgroundColor="#45667d" WidthRequest="135" HeightRequest="45" TextColor="White" />
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                        <Button x:Name="submitTaskButton" Clicked="submitTaskButton_Clicked" Text="Submit" BackgroundColor="#45667d" WidthRequest="135" HeightRequest="45" TextColor="White" />
+                        <Button x:Name="closePopupButton" Clicked="closePopupButton_Clicked" Text="Close" BackgroundColor="#45667d" WidthRequest="135" HeightRequest="45" TextColor="White" />
+                    </StackLayout>
                 </StackLayout>
-            </StackLayout>
+            </ScrollView>
         </Frame>
 
     </StackLayout>

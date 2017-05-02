@@ -39,21 +39,23 @@
         <Button x:Name="displayPopup" Clicked="displayPopup_Clicked" Text="Add project" BackgroundColor="#2a4254" TextColor="White" WidthRequest="135" HeightRequest="45" HorizontalOptions="Center" />
 
         <Frame x:Name="addProjPopup" BackgroundColor="#2c4659" IsVisible="False">
-            <StackLayout HorizontalOptions="Center">
-                <Label Text="Name:" TextColor="White" FontSize="16" />
-                <Entry Placeholder="Project name..." x:Name="projName" />
+            <ScrollView MinimumHeightRequest="135" HorizontalOptions="Center">
+                <StackLayout HorizontalOptions="Center">
+                    <Label Text="Name:" TextColor="White" FontSize="16" />
+                    <Entry Placeholder="Project name..." x:Name="projName" />
 
-                <Label Text="Start date:" TextColor="White" FontSize="16" />
-                <DatePicker x:Name="projStartDate" />
+                    <Label Text="Start date:" TextColor="White" FontSize="16" />
+                    <DatePicker x:Name="projStartDate" Format="dd-MM-yy" />
 
-                <Label Text="End date:" TextColor="White" FontSize="16" />
-                <DatePicker x:Name="projEndDate" />
+                    <Label Text="End date:" TextColor="White" FontSize="16" />
+                    <DatePicker x:Name="projEndDate" Format="dd-MM-yy" />
 
-                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                    <Button Text="Submit" Clicked="AddProject" x:Name="submitProjectButton" BackgroundColor="#45667d" WidthRequest="135" HeightRequest="45" TextColor="White" />
-                    <Button Text="Close" Clicked="closePopupButton_Clicked" x:Name="closePopupButton" BackgroundColor="#45667d" WidthRequest="135" HeightRequest="45" TextColor="White" />
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                        <Button Text="Submit" Clicked="AddProject" x:Name="submitProjectButton" BackgroundColor="#45667d" WidthRequest="135" HeightRequest="45" TextColor="White" />
+                        <Button Text="Close" Clicked="closePopupButton_Clicked" x:Name="closePopupButton" BackgroundColor="#45667d" WidthRequest="135" HeightRequest="45" TextColor="White" />
+                    </StackLayout>
                 </StackLayout>
-            </StackLayout>
+            </ScrollView>
         </Frame>
 
     </StackLayout>

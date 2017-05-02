@@ -29,7 +29,7 @@ namespace ProjectManager.Views
 
         Project proj;
         ObservableCollection<Project> projects;
-        private ProjectDatabaseViewModel projectDatabase { get; set; }
+        private ProjectDatabaseViewModel projectDatabase;
 
         //Method for adding projects.
         private async void AddProject(object sender, EventArgs e)
@@ -39,6 +39,7 @@ namespace ProjectManager.Views
                 //Setting new instance of project class.
                 proj = new Project();
                 proj.Name = projName.Text;
+                proj.IsCompleted = 0;
                 proj.StartDate = $"{projStartDate.Date.Day}.{projStartDate.Date.Month}.{projStartDate.Date.Year}";
                 proj.EndDate = $"{projEndDate.Date.Day}.{projEndDate.Date.Month}.{projEndDate.Date.Year}";
 

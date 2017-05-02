@@ -33,7 +33,7 @@ namespace ProjectManager.Views.ProjectPageTabs
             if (taskList.SelectedItem != null)
             {
                 var tempObj = taskList.SelectedItem as ProjTask;
-                DisplayAlert("Task info", $"Name: {tempObj.Name}\nStart date: {tempObj.StartDate}\nEnd date: {tempObj.EndDate}\nIs completed: {tempObj.IsCompleted}", "Ok");
+                //DisplayAlert("Task info", $"Name: {tempObj.Name}\nStart date: {tempObj.StartDate}\nEnd date: {tempObj.EndDate}\nIs completed: {tempObj.IsCompleted}", "Ok");
             }
         }
     }

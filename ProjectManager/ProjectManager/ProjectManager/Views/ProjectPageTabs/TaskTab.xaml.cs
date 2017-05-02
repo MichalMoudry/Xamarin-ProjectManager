@@ -35,7 +35,7 @@ namespace ProjectManager.Views.ProjectPageTabs
         ObservableCollection<ProjTask> unfinishedTasks;
         ProjTask projTask;
         Project proj;
-        private ViewModels.ProjTaskDatabaseViewModel taskDatabase { get; set; }
+        private ViewModels.ProjTaskDatabaseViewModel taskDatabase;
 
         //Click methods.
         private void addTaskButton_Clicked(object sender, EventArgs e)
@@ -59,7 +59,7 @@ namespace ProjectManager.Views.ProjectPageTabs
                 projTask.StartDate = $"{taskStartDate.Date.Day}.{taskStartDate.Date.Month}.{taskStartDate.Date.Year}";
                 projTask.EndDate = $"{taskEndDate.Date.Day}.{taskEndDate.Date.Month}.{taskEndDate.Date.Year}";
                 projTask.ProjectID = proj.ID;
-                projTask.IsCompleted = false;
+                projTask.IsCompleted = 0;
                 unfinishedTasks.Add(projTask);
                 ClearForm();
                 await taskDatabase.SaveItem(projTask);
@@ -96,6 +96,16 @@ namespace ProjectManager.Views.ProjectPageTabs
             taskStartDate.Date = DateTime.Now;
             taskEndDate.Date = DateTime.Now;
         }
-        
+
+        private void unfinishedTaskList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (unfinishedTaskList.SelectedItem != null)
+            {
+                var tempObj = unfinishedTaskList.SelectedItem as ProjTask;
+                Navigation.PushModalAsync(new EditTab(tempObj));
+                unfinishedTaskList.SelectedItem = null;
+            }
+        }
+
     }
 }
