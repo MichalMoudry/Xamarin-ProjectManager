@@ -19,11 +19,16 @@
 
                 <Label Text="End date:" TextColor="White" FontSize="16" />
                 <DatePicker x:Name="itemEndDate" Format="dd-MM-yy" />
+
+                <StackLayout x:Name="statusLayout" IsVisible="False">
+                    <Label Text="Task status:" TextColor="White" FontSize="16" />
+                    <Switch x:Name="taskStatus" />
+                </StackLayout>
             </StackLayout>
         </ScrollView>
 
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-            <Button x:Name="deleteButton" Text="Delete" WidthRequest="135" HeightRequest="45" BackgroundColor="#2a4254" TextColor="White" />
+            <Button x:Name="deleteButton" Clicked="deleteButton_Clicked" Text="Delete" WidthRequest="135" HeightRequest="45" BackgroundColor="#2a4254" TextColor="White" />
             <Button x:Name="editButton" Text="Edit" WidthRequest="135" HeightRequest="45" BackgroundColor="#2a4254" TextColor="White" />
         </StackLayout>
 

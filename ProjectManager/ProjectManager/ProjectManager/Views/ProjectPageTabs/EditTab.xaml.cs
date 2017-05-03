@@ -48,6 +48,16 @@ namespace ProjectManager.Views.ProjectPageTabs
 
             itemStartDate.Date = Convert.ToDateTime(projTask.StartDate);
             itemEndDate.Date = Convert.ToDateTime(projTask.EndDate);
+
+            statusLayout.IsVisible = true;
+            if (projTask.IsCompleted == 1)
+            {
+                taskStatus.IsToggled = true;
+            }
+            else
+            {
+                taskStatus.IsToggled = false;
+            }
         }
 
         /// <summary>
@@ -62,5 +72,21 @@ namespace ProjectManager.Views.ProjectPageTabs
             itemEndDate.Date = Convert.ToDateTime(proj.EndDate);
         }
 
+        private async void deleteButton_Clicked(object sender, EventArgs e)
+        {
+            if (proj != null)
+            {
+                if (DisplayActionSheet("Remove project", "Cancel", null, "Delete project", "Keep project").IsCanceled.Equals("Delete project"))
+                {
+                    MainPage.projects.Remove(proj);
+                    await projectDatabase.DeleteItem(proj);
+                    await Navigation.PopModalAsync();
+                }
+            }
+            else
+            {
+                await taskDatabase.DeleteItem(projTask);
+            }
+        }
     }
 }

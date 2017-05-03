@@ -12,7 +12,7 @@ namespace ProjectManager.Interfaces
         [PrimaryKey, AutoIncrement, Indexed]
         int ID
         {
-            get; set;
+            get;
         }
 
         string Name

@@ -19,6 +19,7 @@ namespace ProjectManager.Views
         public MainPage()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
             projStartDate.MinimumDate = DateTime.Now;
             projEndDate.MinimumDate = DateTime.Now;
 
@@ -28,7 +29,7 @@ namespace ProjectManager.Views
         }
 
         Project proj;
-        ObservableCollection<Project> projects;
+        public static ObservableCollection<Project> projects;
         private ProjectDatabaseViewModel projectDatabase;
 
         //Method for adding projects.

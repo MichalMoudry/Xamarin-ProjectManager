@@ -19,7 +19,6 @@ namespace ProjectManager.Models
             set { _name = value; }
         }
 
-
         private int _isCompleted;
         public int IsCompleted
         {

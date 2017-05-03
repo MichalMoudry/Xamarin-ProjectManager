@@ -19,18 +19,17 @@
                 <DataTemplate>
 
                     <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <StackLayout>
-                                <Label HeightRequest="1.5" />
-                                <StackLayout Orientation="Horizontal" Margin="10,0,0,0">
-                                    <Label Text="{Binding Name}" TextColor="White" FontAttributes="Bold" FontSize="16" />
-                                </StackLayout>
-
-                                <StackLayout Orientation="Horizontal" Margin="10,0,0,0">
-                                    <Label Text="{Binding StartDate}" FontSize="11" TextColor="White" />
-                                </StackLayout>
-                                <Label HeightRequest="1.5" />
+                        <StackLayout>
+                            <Label HeightRequest="2" />
+                            <StackLayout Orientation="Horizontal" Margin="10,0,0,0">
+                                <Label Text="{Binding Name}" TextColor="White" FontAttributes="Bold" FontSize="16" />
                             </StackLayout>
+
+                            <StackLayout Orientation="Horizontal" Margin="10,0,0,0">
+                                <Label Text="{Binding StartDate}" FontSize="11" TextColor="White" />
+                            </StackLayout>
+                            <Label HeightRequest="2" />
+                            <Label HeightRequest="0.7" BackgroundColor="White" />
                         </StackLayout>
                     </ViewCell>
 

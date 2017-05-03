@@ -24,7 +24,7 @@ namespace ProjectManager.Views.ProjectPageTabs
 
             projectName.Text = projectData.Name;
             projData.Text = $"ID: {projectData.ID}\nStart date: {projectData.StartDate}\nEnd Date: {projectData.EndDate}";
-            taskStateLabel.Text = $"Tasks:\n";
+            taskStateLabel.Text = $"Tasks:";
         }
 
         private ViewModels.ProjTaskDatabaseViewModel taskDatabase { get; set; }
