@@ -43,7 +43,6 @@
     <Compile Include="Interfaces\IFileHelper.cs" />
     <Compile Include="Models\Database.cs" />
     <Compile Include="Models\Project.cs" />
-    <Compile Include="Models\ProjectTaskConnectTable.cs" />
     <Compile Include="Models\ProjTask.cs" />
     <Compile Include="ViewModels\ProjectDatabaseViewModel.cs" />
     <Compile Include="ViewModels\ProjTaskDatabaseViewModel.cs" />

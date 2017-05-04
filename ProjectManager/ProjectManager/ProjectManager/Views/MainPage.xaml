@@ -22,7 +22,11 @@
                             </StackLayout>
 
                             <StackLayout Orientation="Horizontal" Margin="10,0,0,0">
+                                <Label Text="Start date: " FontSize="11" TextColor="White" />
                                 <Label Text="{Binding StartDate}" FontSize="11" TextColor="White" />
+                                <Label Text=" • " FontSize="11" TextColor="White" />
+                                <Label Text="End date: " FontSize="11" TextColor="White" />
+                                <Label Text="{Binding EndDate}" FontSize="11" TextColor="White" />
                             </StackLayout>
                             <Label HeightRequest="2" />
                             <Label HeightRequest="0.7" BackgroundColor="White" />
@@ -36,23 +40,21 @@
         <Button x:Name="displayPopup" Clicked="displayPopup_Clicked" Text="Add project" BackgroundColor="#2a4254" TextColor="White" WidthRequest="135" HeightRequest="45" HorizontalOptions="Center" />
 
         <Frame x:Name="addProjPopup" BackgroundColor="#2c4659" IsVisible="False">
-            <ScrollView MinimumHeightRequest="135" HorizontalOptions="Center">
-                <StackLayout HorizontalOptions="Center">
-                    <Label Text="Name:" TextColor="White" FontSize="16" />
-                    <Entry Placeholder="Project name..." x:Name="projName" />
+            <StackLayout HorizontalOptions="Center">
+                <Label Text="Name:" TextColor="White" FontSize="16" />
+                <Entry Placeholder="Project name..." x:Name="projName" />
 
-                    <Label Text="Start date:" TextColor="White" FontSize="16" />
-                    <DatePicker x:Name="projStartDate" Format="dd-MM-yy" />
+                <Label Text="Start date:" TextColor="White" FontSize="16" />
+                <DatePicker x:Name="projStartDate" Format="dd-MM-yy" />
 
-                    <Label Text="End date:" TextColor="White" FontSize="16" />
-                    <DatePicker x:Name="projEndDate" Format="dd-MM-yy" />
+                <Label Text="End date:" TextColor="White" FontSize="16" />
+                <DatePicker x:Name="projEndDate" Format="dd-MM-yy" />
 
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                        <Button Text="Submit" Clicked="AddProject" x:Name="submitProjectButton" BackgroundColor="#45667d" WidthRequest="135" HeightRequest="45" TextColor="White" />
-                        <Button Text="Close" Clicked="closePopupButton_Clicked" x:Name="closePopupButton" BackgroundColor="#45667d" WidthRequest="135" HeightRequest="45" TextColor="White" />
-                    </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <Button Text="Submit" Clicked="AddProject" x:Name="submitProjectButton" BackgroundColor="#45667d" WidthRequest="135" HeightRequest="45" TextColor="White" />
+                    <Button Text="Close" Clicked="closePopupButton_Clicked" x:Name="closePopupButton" BackgroundColor="#45667d" WidthRequest="135" HeightRequest="45" TextColor="White" />
                 </StackLayout>
-            </ScrollView>
+            </StackLayout>
         </Frame>
 
     </StackLayout>

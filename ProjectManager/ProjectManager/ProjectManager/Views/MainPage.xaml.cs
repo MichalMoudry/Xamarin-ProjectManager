@@ -19,7 +19,6 @@ namespace ProjectManager.Views
         public MainPage()
         {
             InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false);
             projStartDate.MinimumDate = DateTime.Now;
             projEndDate.MinimumDate = DateTime.Now;
 

@@ -22,9 +22,7 @@ namespace ProjectManager.Views.ProjectPageTabs
             InitializeComponent();
 
             taskDatabase = new ViewModels.ProjTaskDatabaseViewModel();
-            
             unfinishedTasks = new ObservableCollection<ProjTask>(taskDatabase.GetUnfinishedTasks(projectData.ID));
-            
             unfinishedTaskList.ItemsSource = unfinishedTasks;
             proj = projectData;
 
@@ -32,7 +30,7 @@ namespace ProjectManager.Views.ProjectPageTabs
             taskEndDate.MinimumDate = DateTime.Now;
         }
         
-        ObservableCollection<ProjTask> unfinishedTasks;
+        public static ObservableCollection<ProjTask> unfinishedTasks;
         ProjTask projTask;
         Project proj;
         private ViewModels.ProjTaskDatabaseViewModel taskDatabase;

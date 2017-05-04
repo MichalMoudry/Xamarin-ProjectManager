@@ -25,7 +25,7 @@ namespace ProjectManager.Views.ProjectPageTabs
             taskList.ItemsSource = tasks;
         }
 
-        ObservableCollection<ProjTask> tasks;
+        public static ObservableCollection<ProjTask> tasks;
         private ViewModels.ProjTaskDatabaseViewModel taskDatabase { get; set; }
 
         private void taskList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -33,7 +33,8 @@ namespace ProjectManager.Views.ProjectPageTabs
             if (taskList.SelectedItem != null)
             {
                 var tempObj = taskList.SelectedItem as ProjTask;
-                //DisplayAlert("Task info", $"Name: {tempObj.Name}\nStart date: {tempObj.StartDate}\nEnd date: {tempObj.EndDate}\nIs completed: {tempObj.IsCompleted}", "Ok");
+                Navigation.PushModalAsync(new EditTab(tempObj));
+                taskList.SelectedItem = null;
             }
         }
     }

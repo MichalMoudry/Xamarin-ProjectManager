@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="ProjectManager.Models.Project">
-    <Position X="1.75" Y="3" Width="1.5" />
+    <Position X="3.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAIAAAAAAAoAIAAAAAAASgAAAAABAAAAAAAEAAAAA=</HashCode>
       <FileName>Models\Project.cs</FileName>
@@ -9,19 +9,12 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ProjectManager.Models.ProjTask">
-    <Position X="8.25" Y="3" Width="1.5" />
+    <Position X="6.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AACAIAAAAAAAoAIAAAAAAASgBAAAABAAAAAAAEAAAAA=</HashCode>
       <FileName>Models\ProjTask.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="ProjectManager.Models.ProjectTaskConnectTable">
-    <Position X="4.75" Y="3" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AACAAAAAAAAAgAAAAAAAAAAABAgAAAAAAAAAAACAAAA=</HashCode>
-      <FileName>Models\ProjectTaskConnectTable.cs</FileName>
-    </TypeIdentifier>
   </Class>
   <Interface Name="ProjectManager.Interfaces.IDatabaseTemplate">
     <Position X="5" Y="0.75" Width="1.5" />

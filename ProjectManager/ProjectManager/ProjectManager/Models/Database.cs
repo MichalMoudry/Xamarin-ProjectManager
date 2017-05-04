@@ -14,7 +14,7 @@ namespace ProjectManager.Models
         public Database(string dbPath)
         {
             database = new SQLiteAsyncConnection(dbPath);
-            database.CreateTableAsync<T>().Wait();
+            database.CreateTableAsync<Project>().Wait();
         }
 
         //Get table in List   

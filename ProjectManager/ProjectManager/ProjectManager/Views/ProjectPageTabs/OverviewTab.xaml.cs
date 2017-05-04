@@ -20,7 +20,7 @@ namespace ProjectManager.Views.ProjectPageTabs
         {
             InitializeComponent();
             taskDatabase = new ViewModels.ProjTaskDatabaseViewModel();
-            projectState.Progress = taskDatabase.GetProjectTasks(projectData.ID).Count;
+            //projectState.Progress = Convert.ToDouble(taskDatabase.GetProjectTasks(projectData.ID).Count / taskDatabase.GetUnfinishedTasks(projectData.ID).Count);
 
             projectName.Text = projectData.Name;
             projData.Text = $"ID: {projectData.ID}\nStart date: {projectData.StartDate}\nEnd Date: {projectData.EndDate}";
