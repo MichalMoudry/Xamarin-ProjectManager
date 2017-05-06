@@ -9,26 +9,22 @@
             <Label x:Name="pageTitle" TextColor="White" Font="Bold, 26" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
         </Frame>
 
-        <ScrollView HorizontalOptions="CenterAndExpand">
-            <StackLayout HorizontalOptions="Center" Padding="3">
-                
-                <Label x:Name="nameEntryLabel" TextColor="White" FontSize="16" />
-                <Entry x:Name="itemName" />
+        <StackLayout HorizontalOptions="Center" Padding="3">
+            <Label x:Name="nameEntryLabel" TextColor="White" FontSize="16" />
+            <Entry x:Name="itemName" />
 
-                <Label Text="Start date:" TextColor="White" FontSize="16" />
-                <DatePicker x:Name="itemStartDate" Format="dd-MM-yy" />
+            <Label Text="Start date:" TextColor="White" FontSize="16" />
+            <DatePicker x:Name="itemStartDate" Format="dd-MM-yy" />
 
-                <Label Text="End date:" TextColor="White" FontSize="16" />
-                <DatePicker x:Name="itemEndDate" Format="dd-MM-yy" />
+            <Label Text="End date:" TextColor="White" FontSize="16" />
+            <DatePicker x:Name="itemEndDate" Format="dd-MM-yy" />
 
-                <StackLayout x:Name="statusLayout">
-                    <Label Text="Status:" TextColor="White" FontSize="16" />
-                    <Switch x:Name="itemStatus" />
-                </StackLayout>
-                
+            <StackLayout x:Name="statusLayout">
+                <Label Text="Status:" TextColor="White" FontSize="16" />
+                <Switch x:Name="itemStatus" />
             </StackLayout>
-        </ScrollView>
-
+        </StackLayout>
+        
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
             <Button x:Name="deleteButton" Clicked="deleteButton_Clicked" Text="Delete" WidthRequest="135" HeightRequest="45" BackgroundColor="#2a4254" TextColor="White" />
             <Button x:Name="editButton" Clicked="editButton_Clicked" Text="Edit" WidthRequest="135" HeightRequest="45" BackgroundColor="#2a4254" TextColor="White" />
