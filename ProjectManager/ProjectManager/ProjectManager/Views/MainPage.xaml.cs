@@ -23,7 +23,9 @@ namespace ProjectManager.Views
             projEndDate.MinimumDate = DateTime.Now;
 
             projectDatabase = new ProjectDatabaseViewModel();
-            projects = new ObservableCollection<Project>(projectDatabase.LoadData());
+            projects = new ObservableCollection<Project>(
+                projectDatabase.LoadData().OrderBy(proj => proj.Name)
+            );
             projectsList.ItemsSource = projects;
         }
 

@@ -10,14 +10,14 @@ namespace ProjectManager.ViewModels
 {
     class ProjTaskDatabaseViewModel : Interfaces.IDatabaseViewModel<ProjTask>
     {
-        private static Database<ProjTask> _taskDatabase;
-        private static Database<ProjTask> TaskDatabase
+        private static TaskDatabase _taskDatabase;
+        private static TaskDatabase TaskDb
         {
             get
             {
                 if (_taskDatabase == null)
                 {
-                    _taskDatabase = new Database<ProjTask>(DependencyService.Get<Interfaces.IFileHelper>().GetLocalFilePath("TaskDatabase.db3"));
+                    _taskDatabase = new TaskDatabase(DependencyService.Get<Interfaces.IFileHelper>().GetLocalFilePath("TaskDatabase.db3"));
                 }
                 return _taskDatabase;
             }
@@ -25,33 +25,33 @@ namespace ProjectManager.ViewModels
 
         public async Task SaveItem(ProjTask item)
         {
-            await TaskDatabase.SaveItemAsync(item);
+            await TaskDb.SaveItemAsync(item);
         }
 
         public List<ProjTask> LoadData()
         {
-            return TaskDatabase.GetItemsAsync<ProjTask>().Result;
+            return TaskDb.GetItemsAsync<ProjTask>().Result;
         }
 
         public async Task DeleteItem(ProjTask item)
         {
-            await TaskDatabase.DeleteItemAsync(item);
+            await TaskDb.DeleteItemAsync(item);
         }
 
         public async Task<ProjTask> GetItem(int id)
         {
-            var temp = await TaskDatabase.GetItemAsync<ProjTask>(id);
+            var temp = await TaskDb.GetItemAsync<ProjTask>(id);
             return temp;
         }
 
         public List<ProjTask> GetProjectTasks(int projectID)
         {
-            return TaskDatabase.GetCompletedTasksByID<ProjTask>(projectID).Result;
+            return TaskDb.GetCompletedTasksByID<ProjTask>(projectID).Result;
         }
 
         public List<ProjTask> GetUnfinishedTasks(int projectID)
         {
-            return TaskDatabase.GetUnfinishedTasksByID<ProjTask>(projectID).Result;
+            return TaskDb.GetUnfinishedTasksByID<ProjTask>(projectID).Result;
         }
     }
 }

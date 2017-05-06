@@ -7,11 +7,11 @@ using SQLite;
 
 namespace ProjectManager.Models
 {
-    public class Database<T> where T : new()
+    class ProjectDatabase
     {
         //Connection   
         private SQLiteAsyncConnection database;
-        public Database(string dbPath)
+        public ProjectDatabase(string dbPath)
         {
             database = new SQLiteAsyncConnection(dbPath);
             database.CreateTableAsync<Project>().Wait();
@@ -54,15 +54,5 @@ namespace ProjectManager.Models
             return database.Table<T>().Where(i => i.Name.Contains(query)).FirstOrDefaultAsync();
         }
 
-        //Task database specific command.
-        public Task<List<T>> GetCompletedTasksByID<T>(int id) where T : class, Interfaces.IDatabaseTemplate, new()
-        {
-            return database.QueryAsync<T>($"SELECT * FROM [ProjTask] WHERE [ProjectID] = {id} AND [IsCompleted] = 1 ORDER BY [StartDate] DESC");
-        }
-        //Task database specific command.
-        public Task<List<T>> GetUnfinishedTasksByID<T>(int id) where T : class, Interfaces.IDatabaseTemplate, new()
-        {
-            return database.QueryAsync<T>($"SELECT * FROM [ProjTask] WHERE [ProjectID] = {id} AND [IsCompleted] = 0 ORDER BY [StartDate] DESC");
-        }
     }
 }
