@@ -14,10 +14,10 @@
             <Entry x:Name="itemName" />
 
             <Label Text="Start date:" TextColor="White" FontSize="16" />
-            <DatePicker x:Name="itemStartDate" Format="dd-MM-yy" />
+            <DatePicker x:Name="itemStartDate" Format="dd.MM.yy" />
 
             <Label Text="End date:" TextColor="White" FontSize="16" />
-            <DatePicker x:Name="itemEndDate" Format="dd-MM-yy" />
+            <DatePicker x:Name="itemEndDate" Format="dd.MM.yy" />
 
             <StackLayout x:Name="statusLayout">
                 <Label Text="Status:" TextColor="White" FontSize="16" />

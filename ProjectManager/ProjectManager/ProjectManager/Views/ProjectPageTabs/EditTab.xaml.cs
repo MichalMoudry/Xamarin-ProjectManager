@@ -22,6 +22,7 @@ namespace ProjectManager.Views.ProjectPageTabs
             proj = projectData;
             projectDatabase = new ViewModels.ProjectDatabaseViewModel();
             projectEditUI();
+            ChangeUIToOS();
         }
 
         public EditTab(ProjTask taskData)
@@ -31,6 +32,7 @@ namespace ProjectManager.Views.ProjectPageTabs
             projTask = taskData;
             taskDatabase = new ViewModels.ProjTaskDatabaseViewModel();
             taskEditUI();
+            ChangeUIToOS();
         }
 
         private Project proj;
@@ -78,8 +80,23 @@ namespace ProjectManager.Views.ProjectPageTabs
                 itemStatus.IsToggled = false;
             }
 
-            itemStartDate.Date = Convert.ToDateTime(proj.StartDate);
-            itemEndDate.Date = Convert.ToDateTime(proj.EndDate);
+            var temp1 = proj.StartDate.Split('.');
+            var temp2 = proj.EndDate.Split('.');
+            itemStartDate.Date = Convert.ToDateTime($"{temp1[1]}/{temp1[0]}/{temp1[2]}");
+            itemEndDate.Date = Convert.ToDateTime($"{temp2[1]}/{temp2[0]}/{temp2[2]}");
+        }
+
+        /// <summary>
+        /// Method for changing UI to device OS.
+        /// </summary>
+        private void ChangeUIToOS()
+        {
+            if (Device.OS.Equals(TargetPlatform.Android))
+            {
+                itemName.TextColor = Color.White;
+                itemStartDate.TextColor = Color.White;
+                itemEndDate.TextColor = Color.White;
+            }
         }
 
         private async void deleteButton_Clicked(object sender, EventArgs e)
@@ -135,7 +152,6 @@ namespace ProjectManager.Views.ProjectPageTabs
                     MainPage.projects.Remove(proj);
                     MainPage.projects.Add(proj);
                     await projectDatabase.SaveItem(proj);
-                    await Navigation.PopModalAsync();
                 }
                 else
                 {

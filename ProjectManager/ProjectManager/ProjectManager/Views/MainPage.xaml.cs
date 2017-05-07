@@ -22,16 +22,18 @@ namespace ProjectManager.Views
             projStartDate.MinimumDate = DateTime.Now;
             projEndDate.MinimumDate = DateTime.Now;
 
+            ChangeUIToOS();
+
             projectDatabase = new ProjectDatabaseViewModel();
             projects = new ObservableCollection<Project>(
-                projectDatabase.LoadData().OrderBy(proj => proj.Name)
+                projectDatabase.LoadData().OrderByDescending(proj => proj.StartDate)
             );
             projectsList.ItemsSource = projects;
         }
 
         Project proj;
         public static ObservableCollection<Project> projects;
-        private ProjectDatabaseViewModel projectDatabase;
+        public ProjectDatabaseViewModel projectDatabase;
 
         //Method for adding projects.
         private async void AddProject(object sender, EventArgs e)
@@ -58,6 +60,7 @@ namespace ProjectManager.Views
                 await DisplayAlert("Error", "Fill form correctly...", "Ok");
             }
         }
+
         /// <summary>
         /// Method for disabling buttons and listview on page.
         /// </summary>
@@ -76,7 +79,6 @@ namespace ProjectManager.Views
             closePopupButton.IsEnabled = true;
             submitProjectButton.IsEnabled = true;
         }
-
         /// <summary>
         /// Method for validating form for submitting project.
         /// </summary>
@@ -103,6 +105,26 @@ namespace ProjectManager.Views
             projEndDate.Date = DateTime.Now;
             displayPopup.IsVisible = true;
             displayPopup.HeightRequest = 45;
+        }
+
+        /// <summary>
+        /// Method for changing UI to device OS.
+        /// </summary>
+        private void ChangeUIToOS()
+        {
+            if (Device.OS.Equals(TargetPlatform.Android))
+            {
+                projName.TextColor = Color.White;
+                projName.PlaceholderColor = Color.White;
+                projStartDate.TextColor = Color.White;
+                projEndDate.TextColor = Color.White;
+
+                //reloadButton.Image = "Assets/ReloadIcon_Material.png";
+            }
+            else if(Device.OS.Equals(TargetPlatform.Windows))
+            {
+                //reloadButton.Image = "Assets/ReloadIcon_Win10.png";
+            }
         }
 
         //Display popup

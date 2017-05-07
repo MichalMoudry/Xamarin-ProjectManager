@@ -13,7 +13,6 @@ using System.Diagnostics;
 
 namespace ProjectManager.Views.ProjectPageTabs
 {
-
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OverviewTab : ContentPage
     {
@@ -21,21 +20,22 @@ namespace ProjectManager.Views.ProjectPageTabs
         {
             InitializeComponent();
             taskDatabase = new ViewModels.ProjTaskDatabaseViewModel();
+            finishedTasks = taskDatabase.GetProjectTasks(projectData.ID).Count;
+            unfinishedTasks = taskDatabase.GetUnfinishedTasks(projectData.ID).Count;
             //projectState.Progress = Convert.ToDouble((unfinishedTasks + finishedTasks) / 100);
 
             projectName.Text = projectData.Name;
-            var temp = Convert.ToDateTime(projectData.StartDate);
-            var temp2 = Convert.ToDateTime(projectData.EndDate);
-            projData.Text = $"Start date: {temp.Day}.{temp.Month}.{temp.Year}\nEnd Date: {temp.Day}.{temp.Month}.{temp.Year}\nFinished tasks: {finishedTasks}\nUnfinished tasks: {unfinishedTasks}";
+            projData.Text = $"Start date: {projectData.StartDate}\nEnd Date: {projectData.EndDate}\nUnfinished tasks: {unfinishedTasks}\nFinished tasks: {finishedTasks}\nProgress: ";
         }
 
         private ViewModels.ProjTaskDatabaseViewModel taskDatabase { get; set; }
-        public int unfinishedTasks { get; private set; }
-        public int finishedTasks { get; private set; }
+        public int unfinishedTasks { get; set; }
+        public int finishedTasks { get; set; }
 
         private void backButton_Clicked(object sender, EventArgs e)
         {
             Navigation.PopModalAsync();
+            //DisplayAlert("Test", $"{finishedTasks * ((unfinishedTasks + finishedTasks) / 2)}","Ok");
         }
     }
 }

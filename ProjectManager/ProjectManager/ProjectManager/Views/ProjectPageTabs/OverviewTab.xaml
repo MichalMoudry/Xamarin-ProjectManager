@@ -12,7 +12,7 @@
 
         <Label x:Name="projData" TextColor="White" FontSize="16" />
 
-        <Label TextColor="White" FontSize="18" Text="Progress:" Margin="0,5,0,0" />
+        <Label TextColor="White" FontSize="16" Text="Progress:" Margin="0,5,0,0" />
         <ProgressBar HeightRequest="40" x:Name="projectState" />
 
         <Button x:Name="backButton" Text="Back" Clicked="backButton_Clicked" HorizontalOptions="Center" BackgroundColor="#2a4254" TextColor="White" WidthRequest="135" HeightRequest="45" />

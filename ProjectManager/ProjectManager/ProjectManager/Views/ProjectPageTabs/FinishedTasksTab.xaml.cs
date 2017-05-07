@@ -21,11 +21,14 @@ namespace ProjectManager.Views.ProjectPageTabs
         {
             InitializeComponent();
             taskDatabase = new ViewModels.ProjTaskDatabaseViewModel();
-            tasks = new ObservableCollection<ProjTask>(taskDatabase.GetProjectTasks(projectData.ID));
+            tasks = new ObservableCollection<ProjTask>(
+                taskDatabase.GetProjectTasks(projectData.ID).OrderByDescending(projTask => projTask.StartDate)
+            );
             taskList.ItemsSource = tasks;
         }
 
         public static ObservableCollection<ProjTask> tasks;
+        private ProjTask projTask;
         private ViewModels.ProjTaskDatabaseViewModel taskDatabase { get; set; }
 
         private void taskList_ItemSelected(object sender, SelectedItemChangedEventArgs e)

@@ -49,10 +49,10 @@
                 <Entry Placeholder="Task name..." x:Name="taskName" />
 
                 <Label Text="Start date:" TextColor="White" FontSize="16" />
-                <DatePicker x:Name="taskStartDate" />
+                <DatePicker x:Name="taskStartDate" Format="dd.MM.yy" />
 
                 <Label Text="End date:" TextColor="White" FontSize="16" />
-                <DatePicker x:Name="taskEndDate" />
+                <DatePicker x:Name="taskEndDate" Format="dd.MM.yy" />
 
                 <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                     <Button x:Name="submitTaskButton" Clicked="submitTaskButton_Clicked" Text="Submit" BackgroundColor="#45667d" WidthRequest="135" HeightRequest="45" TextColor="White" />
