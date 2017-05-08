@@ -59,7 +59,6 @@ namespace ProjectManager.Views.ProjectPageTabs
             {
                 itemStatus.IsToggled = false;
             }
-            backButton.IsVisible = true;
             pageTitleFrame.Margin = new Thickness(0,0,0,0);
         }
 
@@ -187,7 +186,7 @@ namespace ProjectManager.Views.ProjectPageTabs
             }
         }
 
-        public async void deleteButton_Click(object sender, EventArgs e)
+        public async void backButton_Click(object sender, EventArgs e)
         {
             await Navigation.PopModalAsync();
         }

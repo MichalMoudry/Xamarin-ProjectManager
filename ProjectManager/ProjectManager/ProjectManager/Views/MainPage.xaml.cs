@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using ProjectManager.Models;
 using ProjectManager.ViewModels;
 using Xamarin.Forms.Xaml;
+using System.Diagnostics;
 
 namespace ProjectManager.Views
 {
@@ -25,6 +26,7 @@ namespace ProjectManager.Views
             ChangeUIToOS();
 
             projectDatabase = new ProjectDatabaseViewModel();
+            taskDatabase = new ProjTaskDatabaseViewModel();
             projects = new ObservableCollection<Project>(
                 projectDatabase.LoadData().OrderByDescending(proj => proj.StartDate)
             );
@@ -34,6 +36,7 @@ namespace ProjectManager.Views
         Project proj;
         public static ObservableCollection<Project> projects;
         public ProjectDatabaseViewModel projectDatabase;
+        public ProjTaskDatabaseViewModel taskDatabase;
 
         //Method for adding projects.
         private async void AddProject(object sender, EventArgs e)
@@ -142,12 +145,18 @@ namespace ProjectManager.Views
             displayPopup.HeightRequest = 45;
         }
 
-        private void projectsList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void projectsList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (projectsList.SelectedItem != null)
             {
                 var tempObj = projectsList.SelectedItem as Project;
-                Navigation.PushModalAsync(new ProjectPage(tempObj));
+                int finishedTasks = taskDatabase.GetProjectTasks(tempObj.ID).Count;
+                int unfinishedTasks = taskDatabase.GetUnfinishedTasks(tempObj.ID).Count;
+                var answer = await DisplayAlert($"{tempObj.Name}", $"Start date: {tempObj.StartDate}\nEnd date: {tempObj.EndDate}\nRemaining tasks: {unfinishedTasks}\nIs completed: {Convert.ToBoolean(tempObj.IsCompleted)}", "Edit", "Cancel");
+                if (answer.Equals(true))
+                {
+                    await Navigation.PushModalAsync(new ProjectPage(tempObj));
+                }
                 projectsList.SelectedItem = null;
             }
         }

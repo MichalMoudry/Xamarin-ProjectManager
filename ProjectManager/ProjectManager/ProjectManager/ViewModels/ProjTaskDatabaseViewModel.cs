@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace ProjectManager.ViewModels
 {
-    class ProjTaskDatabaseViewModel : Interfaces.IDatabaseViewModel<ProjTask>
+    public class ProjTaskDatabaseViewModel : Interfaces.IDatabaseViewModel<ProjTask>
     {
         private static TaskDatabase _taskDatabase;
         private static TaskDatabase TaskDb
