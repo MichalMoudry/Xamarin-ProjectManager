@@ -48,9 +48,6 @@ namespace ProjectManager.Views.ProjectPageTabs
             nameEntryLabel.Text = "Task name:";
             itemName.Text = $"{projTask.Name}";
 
-            itemStartDate.Date = Convert.ToDateTime(projTask.StartDate);
-            itemEndDate.Date = Convert.ToDateTime(projTask.EndDate);
-
             if (projTask.IsCompleted == 1)
             {
                 itemStatus.IsToggled = true;
@@ -78,11 +75,6 @@ namespace ProjectManager.Views.ProjectPageTabs
             {
                 itemStatus.IsToggled = false;
             }
-
-            var temp1 = proj.StartDate.Split('.');
-            var temp2 = proj.EndDate.Split('.');
-            itemStartDate.Date = Convert.ToDateTime($"{temp1[1]}/{temp1[0]}/{temp1[2]}");
-            itemEndDate.Date = Convert.ToDateTime($"{temp2[1]}/{temp2[0]}/{temp2[2]}");
         }
 
         /// <summary>
@@ -95,6 +87,26 @@ namespace ProjectManager.Views.ProjectPageTabs
                 itemName.TextColor = Color.White;
                 itemStartDate.TextColor = Color.White;
                 itemEndDate.TextColor = Color.White;
+
+                //Project date
+                itemStartDate.Date = Convert.ToDateTime(proj.StartDate);
+                itemEndDate.Date = Convert.ToDateTime(proj.EndDate);
+                //Task date
+                itemStartDate.Date = Convert.ToDateTime(projTask.StartDate);
+                itemEndDate.Date = Convert.ToDateTime(projTask.EndDate);
+            }
+            else if(Device.OS.Equals(TargetPlatform.Windows))
+            {
+                //Project date
+                var temp1 = proj.StartDate.Split('.');
+                var temp2 = proj.EndDate.Split('.');
+                itemStartDate.Date = Convert.ToDateTime($"{temp1[1]}/{temp1[0]}/{temp1[2]}");
+                itemEndDate.Date = Convert.ToDateTime($"{temp2[1]}/{temp2[0]}/{temp2[2]}");
+                //Task date
+                var temp3 = projTask.StartDate.Split('.');
+                var temp4 = projTask.EndDate.Split('.');
+                itemStartDate.Date = Convert.ToDateTime($"{temp3[1]}/{temp3[0]}/{temp3[2]}");
+                itemEndDate.Date = Convert.ToDateTime($"{temp4[1]}/{temp4[0]}/{temp4[2]}");
             }
         }
 

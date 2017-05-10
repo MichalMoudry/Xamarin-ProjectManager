@@ -48,6 +48,9 @@
     <Compile Include="ViewModels\ProjectDatabaseViewModel.cs" />
     <Compile Include="ViewModels\ProjTaskDatabaseViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\FinishedProjectsPage.xaml.cs">
+      <DependentUpon>FinishedProjectsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -126,6 +129,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\ProjectPageTabs\FinishedTasksTab.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\FinishedProjectsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

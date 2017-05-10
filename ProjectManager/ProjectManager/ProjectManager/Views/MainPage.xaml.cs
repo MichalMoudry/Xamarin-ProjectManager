@@ -9,7 +9,6 @@ using System.Collections.ObjectModel;
 using ProjectManager.Models;
 using ProjectManager.ViewModels;
 using Xamarin.Forms.Xaml;
-using System.Diagnostics;
 
 namespace ProjectManager.Views
 {
@@ -24,6 +23,7 @@ namespace ProjectManager.Views
             projEndDate.MinimumDate = DateTime.Now;
 
             ChangeUIToOS();
+            
 
             projectDatabase = new ProjectDatabaseViewModel();
             taskDatabase = new ProjTaskDatabaseViewModel();
@@ -160,6 +160,5 @@ namespace ProjectManager.Views
                 projectsList.SelectedItem = null;
             }
         }
-
     }
 }
