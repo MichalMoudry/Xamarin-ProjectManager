@@ -98,15 +98,21 @@ namespace ProjectManager.Views.ProjectPageTabs
             else if(Device.OS.Equals(TargetPlatform.Windows))
             {
                 //Project date
-                var temp1 = proj.StartDate.Split('.');
-                var temp2 = proj.EndDate.Split('.');
-                itemStartDate.Date = Convert.ToDateTime($"{temp1[1]}/{temp1[0]}/{temp1[2]}");
-                itemEndDate.Date = Convert.ToDateTime($"{temp2[1]}/{temp2[0]}/{temp2[2]}");
+                if (proj != null)
+                {
+                    var temp1 = proj.StartDate.Split('.');
+                    var temp2 = proj.EndDate.Split('.');
+                    itemStartDate.Date = Convert.ToDateTime($"{temp1[1]}.{temp1[0]}.{temp1[2]}");
+                    itemEndDate.Date = Convert.ToDateTime($"{temp2[1]}.{temp2[0]}.{temp2[2]}");
+                }
                 //Task date
-                var temp3 = projTask.StartDate.Split('.');
-                var temp4 = projTask.EndDate.Split('.');
-                itemStartDate.Date = Convert.ToDateTime($"{temp3[1]}/{temp3[0]}/{temp3[2]}");
-                itemEndDate.Date = Convert.ToDateTime($"{temp4[1]}/{temp4[0]}/{temp4[2]}");
+                else if (projTask != null)
+                {
+                    var temp3 = projTask.StartDate.Split('.');
+                    var temp4 = projTask.EndDate.Split('.');
+                    itemStartDate.Date = Convert.ToDateTime($"{temp3[1]}.{temp3[0]}.{temp3[2]}");
+                    itemEndDate.Date = Convert.ToDateTime($"{temp4[1]}.{temp4[0]}.{temp4[2]}");
+                }
             }
         }
 
@@ -145,7 +151,7 @@ namespace ProjectManager.Views.ProjectPageTabs
 
         private async void editButton_Clicked(object sender, EventArgs e)
         {
-            if (proj != null)
+            if (proj != null && projTask == null)
             {
                 if (FormValidation())
                 {
@@ -155,13 +161,17 @@ namespace ProjectManager.Views.ProjectPageTabs
                     if (itemStatus.IsToggled)
                     {
                         proj.IsCompleted = 1;
+                        MainPage.projects.Remove(proj);
+                        FinishedProjectsPage.finishedProjs.Add(proj);
                     }
                     else
                     {
                         proj.IsCompleted = 0;
+                        MainPage.projects.Remove(proj);
+                        MainPage.projects.Add(proj);
+                        FinishedProjectsPage.finishedProjs.Remove(proj);
                     }
-                    MainPage.projects.Remove(proj);
-                    MainPage.projects.Add(proj);
+                    await DisplayAlert("Result", "Project was edited.", "Ok");
                     await projectDatabase.SaveItem(proj);
                 }
                 else

@@ -19,10 +19,8 @@
             <Label Text="End date:" TextColor="White" FontSize="16" />
             <DatePicker x:Name="itemEndDate" Format="dd.MM.yy" />
 
-            <StackLayout x:Name="statusLayout" Orientation="Horizontal">
-                <Label Text="Status: " TextColor="White" FontSize="16" VerticalTextAlignment="Center" />
-                <Switch x:Name="itemStatus" VerticalOptions="Center" />
-            </StackLayout>
+            <Label Text="Status: " TextColor="White" FontSize="16" VerticalTextAlignment="Center" />
+            <Switch x:Name="itemStatus" VerticalOptions="Center" />
         </StackLayout>
         
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center">

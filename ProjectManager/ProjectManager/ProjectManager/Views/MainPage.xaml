@@ -6,8 +6,8 @@
     
     <StackLayout BackgroundColor="#395a73">
 
-        <Frame BackgroundColor="#2c4659">
-            <Label Text="Project Manager" TextColor="White" Font="Bold, 26" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+        <Frame BackgroundColor="#2c4659" Margin="0,15,0,0">
+            <Label Text="Ongoing projects" TextColor="White" Font="Bold, 26" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
         </Frame>
 
         <ListView x:Name="projectsList" ItemSelected="projectsList_ItemSelected">

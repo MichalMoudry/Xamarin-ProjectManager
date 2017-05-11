@@ -32,7 +32,12 @@ namespace ProjectManager.ViewModels
 
         public List<Project> LoadData()
         {
-            return ProjectDb.GetItemsAsync<Project>().Result;
+            return ProjectDb.GetUnfinishedProjects<Project>().Result;
+        }
+
+        public List<Project> GetFinishedProjs()
+        {
+            return ProjectDb.GetFinishedProjects<Project>().Result;
         }
 
         public async Task DeleteItem(Project item)

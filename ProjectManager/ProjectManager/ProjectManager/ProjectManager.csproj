@@ -66,6 +66,9 @@
     <Compile Include="Views\ProjectPageTabs\TaskTab.xaml.cs">
       <DependentUpon>TaskTab.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Projects.xaml.cs">
+      <DependentUpon>Projects.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">
@@ -135,6 +138,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\FinishedProjectsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Projects.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

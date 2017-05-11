@@ -11,7 +11,7 @@ namespace ProjectManager
         public App()
         {
             InitializeComponent();
-            MainPage = new Views.MainPage();  
+            MainPage = new Views.Projects();  
         }
 
         protected override void OnStart()

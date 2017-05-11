@@ -150,7 +150,7 @@ namespace ProjectManager.Views
             if (projectsList.SelectedItem != null)
             {
                 var tempObj = projectsList.SelectedItem as Project;
-                int finishedTasks = taskDatabase.GetProjectTasks(tempObj.ID).Count;
+                //int finishedTasks = taskDatabase.GetProjectTasks(tempObj.ID).Count;
                 int unfinishedTasks = taskDatabase.GetUnfinishedTasks(tempObj.ID).Count;
                 var answer = await DisplayAlert($"{tempObj.Name}", $"Start date: {tempObj.StartDate}\nEnd date: {tempObj.EndDate}\nRemaining tasks: {unfinishedTasks}\nIs completed: {Convert.ToBoolean(tempObj.IsCompleted)}", "Edit", "Cancel");
                 if (answer.Equals(true))

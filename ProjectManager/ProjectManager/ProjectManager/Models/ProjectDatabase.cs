@@ -54,5 +54,15 @@ namespace ProjectManager.Models
             return database.Table<T>().Where(i => i.Name.Contains(query)).FirstOrDefaultAsync();
         }
 
+        public Task<List<T>> GetUnfinishedProjects<T>() where T : new()
+        {
+            return database.QueryAsync<T>($"SELECT * FROM [Project] WHERE [IsCompleted] = 0");
+        }
+
+        public Task<List<T>> GetFinishedProjects<T>() where T : new()
+        {
+            return database.QueryAsync<T>($"SELECT * FROM [Project] WHERE [IsCompleted] = 1");
+        }
+
     }
 }
