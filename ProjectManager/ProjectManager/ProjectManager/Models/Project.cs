@@ -29,7 +29,10 @@ namespace ProjectManager.Models
         private string _startDate;
         public string StartDate
         {
-            get { return _startDate; }
+            get {
+                var temp = _startDate.Split('.');
+                return $"{temp[0]}.{temp[1]}.{temp[2]}";
+            }
             set { _startDate = value; }
         }
 

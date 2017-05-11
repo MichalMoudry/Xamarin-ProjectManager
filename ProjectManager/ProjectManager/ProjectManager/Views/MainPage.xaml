@@ -29,7 +29,7 @@
                                 <Label Text="{Binding EndDate}" FontSize="11" TextColor="White" />
                             </StackLayout>
                             <Label HeightRequest="2" />
-                            <Label HeightRequest="0.7" BackgroundColor="White" />
+                            <Label HeightRequest="0.7" BackgroundColor="White" x:Name="UWPseparator" />
                         </StackLayout>
                     </ViewCell>
 
@@ -45,10 +45,10 @@
                 <Entry Placeholder="Project name..." x:Name="projName" />
 
                 <Label Text="Start date:" TextColor="White" FontSize="16" />
-                <DatePicker x:Name="projStartDate" Format="dd-MM-yy" />
+                <DatePicker x:Name="projStartDate" Format="dd.MM.yy" />
 
                 <Label Text="End date:" TextColor="White" FontSize="16" />
-                <DatePicker x:Name="projEndDate" Format="dd-MM-yy" />
+                <DatePicker x:Name="projEndDate" Format="dd.MM.yy" />
 
                 <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                     <Button Text="Submit" Clicked="AddProject" x:Name="submitProjectButton" BackgroundColor="#45667d" WidthRequest="135" HeightRequest="45" TextColor="White" />

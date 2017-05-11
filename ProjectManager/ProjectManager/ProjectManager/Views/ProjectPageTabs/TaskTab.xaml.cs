@@ -21,8 +21,12 @@ namespace ProjectManager.Views.ProjectPageTabs
         {
             InitializeComponent();
 
+            ChangeUIToOS();
+
             taskDatabase = new ViewModels.ProjTaskDatabaseViewModel();
-            unfinishedTasks = new ObservableCollection<ProjTask>(taskDatabase.GetUnfinishedTasks(projectData.ID));
+            unfinishedTasks = new ObservableCollection<ProjTask>(
+                taskDatabase.GetUnfinishedTasks(projectData.ID).OrderByDescending(projTask => projTask.StartDate)
+            );
             unfinishedTaskList.ItemsSource = unfinishedTasks;
             proj = projectData;
 
@@ -93,6 +97,20 @@ namespace ProjectManager.Views.ProjectPageTabs
             taskName.Text = "";
             taskStartDate.Date = DateTime.Now;
             taskEndDate.Date = DateTime.Now;
+        }
+
+        /// <summary>
+        /// Method for changing UI to device OS.
+        /// </summary>
+        private void ChangeUIToOS()
+        {
+            if (Device.OS.Equals(TargetPlatform.Android))
+            {
+                taskName.PlaceholderColor = Color.White;
+                taskName.TextColor = Color.White;
+                taskStartDate.TextColor = Color.White;
+                taskEndDate.TextColor = Color.White;
+            }
         }
 
         private void unfinishedTaskList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
