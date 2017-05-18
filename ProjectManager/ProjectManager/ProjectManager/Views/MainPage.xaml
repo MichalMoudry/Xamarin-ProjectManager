@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProjectManager.Views.MainPage"
-             Title="Main page">
+             Title="Projects">
     
     <StackLayout BackgroundColor="#395a73">
 
@@ -15,7 +15,7 @@
                 <DataTemplate>
 
                     <ViewCell>
-                        <StackLayout>
+                        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                             <Label HeightRequest="2" />
                             <StackLayout Orientation="Horizontal" Margin="10,0,0,0">
                                 <Label Text="{Binding Name}" TextColor="White" FontAttributes="Bold" FontSize="19" />

@@ -26,7 +26,6 @@ namespace ProjectManager.Views
             
 
             projectDatabase = new ProjectDatabaseViewModel();
-            taskDatabase = new ProjTaskDatabaseViewModel();
             projects = new ObservableCollection<Project>(
                 projectDatabase.LoadData().OrderByDescending(proj => proj.StartDate)
             );
@@ -36,7 +35,6 @@ namespace ProjectManager.Views
         Project proj;
         public static ObservableCollection<Project> projects;
         public ProjectDatabaseViewModel projectDatabase;
-        public ProjTaskDatabaseViewModel taskDatabase;
 
         //Method for adding projects.
         private async void AddProject(object sender, EventArgs e)
@@ -150,13 +148,12 @@ namespace ProjectManager.Views
             if (projectsList.SelectedItem != null)
             {
                 var tempObj = projectsList.SelectedItem as Project;
-                //int finishedTasks = taskDatabase.GetProjectTasks(tempObj.ID).Count;
-                int unfinishedTasks = taskDatabase.GetUnfinishedTasks(tempObj.ID).Count;
-                var answer = await DisplayAlert($"{tempObj.Name}", $"Start date: {tempObj.StartDate}\nEnd date: {tempObj.EndDate}\nRemaining tasks: {unfinishedTasks}\nIs completed: {Convert.ToBoolean(tempObj.IsCompleted)}", "Edit", "Cancel");
+                /*var answer = await DisplayAlert($"{tempObj.Name}", $"Start date: {tempObj.StartDate}\nEnd date: {tempObj.EndDate}\nRemaining tasks: {unfinishedTasks}\nIs completed: {Convert.ToBoolean(tempObj.IsCompleted)}", "Edit", "Cancel");
                 if (answer.Equals(true))
                 {
                     await Navigation.PushModalAsync(new ProjectPage(tempObj));
-                }
+                }*/
+                await Navigation.PushModalAsync(new ProjectPage(tempObj));
                 projectsList.SelectedItem = null;
             }
         }

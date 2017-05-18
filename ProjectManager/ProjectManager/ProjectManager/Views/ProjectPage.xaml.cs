@@ -19,9 +19,11 @@ namespace ProjectManager.Views
             InitializeComponent();
 
             BarBackgroundColor = Color.FromHex("#2c4659");
-            Children.Add(new EditTab(projectData));
+            BarTextColor = Color.White;
+            Children.Add(new OverviewTab(projectData));
             Children.Add(new TaskTab(projectData));
             Children.Add(new FinishedTasksTab(projectData));
+            Children.Add(new EditTab(projectData));
         }
     }
 }

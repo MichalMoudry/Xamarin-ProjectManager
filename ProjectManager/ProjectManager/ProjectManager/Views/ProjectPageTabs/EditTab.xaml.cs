@@ -121,10 +121,17 @@ namespace ProjectManager.Views.ProjectPageTabs
             if (proj != null)
             {
                 //Deleting of project.
-                var res = await DisplayActionSheet("Remove project", "Cancel", null, "Delete project", "Keep project");
-                if (res.Equals("Delete project"))
+                bool res = await DisplayAlert("Delete project", "Do you want to delete this project?", "Delete", "Cancel");
+                if (res.Equals(true))
                 {
-                    MainPage.projects.Remove(proj);
+                    if (proj.IsCompleted == 0)
+                    {
+                        MainPage.projects.Remove(proj);
+                    }
+                    else
+                    {
+                        FinishedProjectsPage.finishedProjs.Remove(proj);
+                    }
                     await projectDatabase.DeleteItem(proj);
                     await Navigation.PopModalAsync();
                 }
@@ -132,8 +139,8 @@ namespace ProjectManager.Views.ProjectPageTabs
             else
             {
                 //Deleting of task.
-                var res = await DisplayActionSheet("Remove task", "Cancel", null, "Remove task", "Keep task");
-                if (res.Equals("Remove task"))
+                bool res = await DisplayAlert("Delete task", "Do you want to delete this task?", "Delete", "Cancel");
+                if (res.Equals(true))
                 {
                     await taskDatabase.DeleteItem(projTask);
                     if (itemStatus.IsToggled)

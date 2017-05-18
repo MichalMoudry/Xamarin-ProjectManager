@@ -17,6 +17,7 @@ namespace ProjectManager.Views
         {
             InitializeComponent();
             BarBackgroundColor = Color.FromHex("#2c4659");
+            BarTextColor = Color.White;
             Children.Add(new MainPage());
             Children.Add(new FinishedProjectsPage());
         }
