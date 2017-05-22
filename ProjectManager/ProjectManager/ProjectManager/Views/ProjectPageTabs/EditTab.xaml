@@ -28,7 +28,7 @@
             <Button x:Name="editButton" Clicked="editButton_Clicked" Text="Edit" WidthRequest="135" HeightRequest="45" BackgroundColor="#2a4254" TextColor="White" />
         </StackLayout>
 
-        <Button x:Name="backButton" Clicked="backButton_Click" HorizontalOptions="Center" Margin="0,5,0,0" Text="Back" WidthRequest="135" HeightRequest="45" BackgroundColor="#2a4254" TextColor="White" />
+        <Button x:Name="backButton" Clicked="backButton_Click" IsVisible="False" HorizontalOptions="Center" Margin="0,5,0,0" Text="Back" WidthRequest="135" HeightRequest="45" BackgroundColor="#2a4254" TextColor="White" />
 
     </StackLayout>
 </ContentPage>

@@ -10,6 +10,19 @@ namespace ProjectManager.ViewModels
 {
     public class ProjTaskDatabaseViewModel : Interfaces.IDatabaseViewModel<ProjTask>
     {
+        //Singleton
+        private static ProjTaskDatabaseViewModel _instance;
+        public static ProjTaskDatabaseViewModel Instance()
+        {
+            if (_instance == null)
+            {
+                _instance = new ProjTaskDatabaseViewModel();
+            }
+            return _instance;
+        }
+
+        protected ProjTaskDatabaseViewModel() { }
+
         private static TaskDatabase _taskDatabase;
         private static TaskDatabase TaskDb
         {

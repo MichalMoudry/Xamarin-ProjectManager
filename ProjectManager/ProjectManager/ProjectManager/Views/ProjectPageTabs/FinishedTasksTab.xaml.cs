@@ -20,7 +20,7 @@ namespace ProjectManager.Views.ProjectPageTabs
         public FinishedTasksTab(Project projectData)
         {
             InitializeComponent();
-            taskDatabase = new ViewModels.ProjTaskDatabaseViewModel();
+            taskDatabase = ViewModels.ProjTaskDatabaseViewModel.Instance();
             tasks = new ObservableCollection<ProjTask>(
                 taskDatabase.GetProjectTasks(projectData.ID).OrderByDescending(projTask => projTask.StartDate)
             );

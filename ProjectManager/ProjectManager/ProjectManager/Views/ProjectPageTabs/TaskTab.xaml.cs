@@ -23,7 +23,7 @@ namespace ProjectManager.Views.ProjectPageTabs
 
             ChangeUIToOS();
 
-            taskDatabase = new ViewModels.ProjTaskDatabaseViewModel();
+            taskDatabase = ViewModels.ProjTaskDatabaseViewModel.Instance();
             unfinishedTasks = new ObservableCollection<ProjTask>(
                 taskDatabase.GetUnfinishedTasks(projectData.ID).OrderByDescending(projTask => projTask.StartDate)
             );

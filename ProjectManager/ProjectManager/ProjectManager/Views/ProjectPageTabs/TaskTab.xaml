@@ -10,7 +10,7 @@
         </Frame>
 
         <!--Unfinished tasks-->
-        <ListView x:Name="unfinishedTaskList" ItemSelected="unfinishedTaskList_ItemSelected">
+        <ListView x:Name="unfinishedTaskList" ItemSelected="unfinishedTaskList_ItemSelected" RowHeight="70">
             <ListView.Header>
                 <Label Text="Unfinished tasks" FontAttributes="Bold" TextColor="White" FontSize="19" />
             </ListView.Header>
@@ -18,7 +18,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
 
-                    <ViewCell>
+                    <ViewCell IsEnabled="True">
                         <StackLayout>
                             <Label HeightRequest="2" />
                             <StackLayout Orientation="Horizontal" Margin="10,0,0,0">

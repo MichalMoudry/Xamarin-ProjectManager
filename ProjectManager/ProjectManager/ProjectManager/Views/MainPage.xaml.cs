@@ -23,9 +23,8 @@ namespace ProjectManager.Views
             projEndDate.MinimumDate = DateTime.Now;
 
             ChangeUIToOS();
-            
 
-            projectDatabase = new ProjectDatabaseViewModel();
+            projectDatabase = ProjectDatabaseViewModel.Instance();
             projects = new ObservableCollection<Project>(
                 projectDatabase.LoadData().OrderByDescending(proj => proj.StartDate)
             );

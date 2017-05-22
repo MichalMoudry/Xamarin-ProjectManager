@@ -19,7 +19,32 @@ namespace ProjectManager.Views.ProjectPageTabs
         {
             InitializeComponent();
             pageTitle.Text = projectData.Name;
-            projectDataDisplay.Text = $"";
+            taskDatabase = ViewModels.ProjTaskDatabaseViewModel.Instance();
+            finishedTasks = taskDatabase.GetProjectTasks(projectData.ID).Count;
+            unfinishedTasks = taskDatabase.GetUnfinishedTasks(projectData.ID).Count;
+
+            projectDataDisplay.Text = String.Format("Start date: {0}\nEnd date: {1}\nUnfinished tasks: {2}\nFinished tasks: {3}",
+                projectData.StartDate,
+                projectData.EndDate,
+                unfinishedTasks,
+                finishedTasks
+                );
+
+            
+
+            if (unfinishedTasks != 0 || finishedTasks != 0)
+            {
+                projectProgress.ProgressTo(finishedTasks / unfinishedTasks, 250, Easing.Linear);
+            }
+        }
+
+        ViewModels.ProjTaskDatabaseViewModel taskDatabase;
+        int finishedTasks;
+        int unfinishedTasks;
+
+        public async void backButton_Click(object sender, EventArgs e)
+        {
+            await Navigation.PopModalAsync();
         }
     }
 }

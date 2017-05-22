@@ -10,11 +10,11 @@
             <Label Text="Ongoing projects" TextColor="White" Font="Bold, 26" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
         </Frame>
 
-        <ListView x:Name="projectsList" ItemSelected="projectsList_ItemSelected">
+        <ListView x:Name="projectsList" ItemSelected="projectsList_ItemSelected" RowHeight="70">
             <ListView.ItemTemplate>
                 <DataTemplate>
 
-                    <ViewCell>
+                    <ViewCell IsEnabled="True">
                         <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                             <Label HeightRequest="2" />
                             <StackLayout Orientation="Horizontal" Margin="10,0,0,0">

@@ -10,6 +10,19 @@ namespace ProjectManager.ViewModels
 {
     public class ProjectDatabaseViewModel : Interfaces.IDatabaseViewModel<Project>
     {
+        //Singleton
+        private static ProjectDatabaseViewModel _instance;
+        public static ProjectDatabaseViewModel Instance()
+        {
+            if (_instance == null)
+            {
+                _instance = new ProjectDatabaseViewModel();
+            }
+            return _instance;
+        }
+
+        protected ProjectDatabaseViewModel() { }
+
         private static ProjectDatabase _projectDatabase;
         private static ProjectDatabase ProjectDb
         {

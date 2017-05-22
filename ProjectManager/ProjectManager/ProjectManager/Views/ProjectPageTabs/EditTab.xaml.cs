@@ -20,7 +20,7 @@ namespace ProjectManager.Views.ProjectPageTabs
             InitializeComponent();
             pageTitle.Text = "Edit project";
             proj = projectData;
-            projectDatabase = new ViewModels.ProjectDatabaseViewModel();
+            projectDatabase = ViewModels.ProjectDatabaseViewModel.Instance();
             projectEditUI();
             ChangeUIToOS();
         }
@@ -30,7 +30,7 @@ namespace ProjectManager.Views.ProjectPageTabs
             InitializeComponent();
             pageTitle.Text = "Edit task";
             projTask = taskData;
-            taskDatabase = new ViewModels.ProjTaskDatabaseViewModel();
+            taskDatabase = ViewModels.ProjTaskDatabaseViewModel.Instance();
             taskEditUI();
             ChangeUIToOS();
         }
@@ -47,6 +47,7 @@ namespace ProjectManager.Views.ProjectPageTabs
         {
             nameEntryLabel.Text = "Task name:";
             itemName.Text = $"{projTask.Name}";
+            backButton.IsVisible = true;
 
             if (projTask.IsCompleted == 1)
             {
@@ -82,6 +83,7 @@ namespace ProjectManager.Views.ProjectPageTabs
         /// </summary>
         private void ChangeUIToOS()
         {
+            //Android UI.
             if (Device.OS.Equals(TargetPlatform.Android))
             {
                 itemName.TextColor = Color.White;
@@ -95,6 +97,7 @@ namespace ProjectManager.Views.ProjectPageTabs
                 itemStartDate.Date = Convert.ToDateTime(projTask.StartDate);
                 itemEndDate.Date = Convert.ToDateTime(projTask.EndDate);
             }
+            //Windows UI.
             else if(Device.OS.Equals(TargetPlatform.Windows))
             {
                 //Project date
@@ -116,11 +119,16 @@ namespace ProjectManager.Views.ProjectPageTabs
             }
         }
 
+        /// <summary>
+        /// Method for button to delete project or its task.
+        /// </summary>
+        /// <param name="sender">Button.</param>
+        /// <param name="e">Event arguments.</param>
         private async void deleteButton_Clicked(object sender, EventArgs e)
         {
             if (proj != null)
             {
-                //Deleting of project.
+                //Deleting project.
                 bool res = await DisplayAlert("Delete project", "Do you want to delete this project?", "Delete", "Cancel");
                 if (res.Equals(true))
                 {
@@ -138,7 +146,7 @@ namespace ProjectManager.Views.ProjectPageTabs
             }
             else
             {
-                //Deleting of task.
+                //Deleting task.
                 bool res = await DisplayAlert("Delete task", "Do you want to delete this task?", "Delete", "Cancel");
                 if (res.Equals(true))
                 {
@@ -158,6 +166,7 @@ namespace ProjectManager.Views.ProjectPageTabs
 
         private async void editButton_Clicked(object sender, EventArgs e)
         {
+            //Editing project
             if (proj != null && projTask == null)
             {
                 if (FormValidation())
@@ -186,6 +195,7 @@ namespace ProjectManager.Views.ProjectPageTabs
                     await DisplayAlert("Error", "Fill form correctly...", "Ok");
                 }
             }
+            //Editing task
             else
             {
                 if (FormValidation())
@@ -215,11 +225,10 @@ namespace ProjectManager.Views.ProjectPageTabs
             }
         }
 
-        public async void backButton_Click(object sender, EventArgs e)
-        {
-            await Navigation.PopModalAsync();
-        }
-
+        /// <summary>
+        /// Method for validating inputs in form.
+        /// </summary>
+        /// <returns>T if form is correct, F if not.</returns>
         private bool FormValidation()
         {
             if (string.IsNullOrEmpty(itemName.Text).Equals(false) && itemStartDate != null && itemEndDate != null && (itemStartDate.Date.CompareTo(itemEndDate.Date).Equals(-1) || itemStartDate.Date.CompareTo(itemEndDate.Date).Equals(0)))
@@ -231,6 +240,11 @@ namespace ProjectManager.Views.ProjectPageTabs
                 return false;
             }
         }
-        
+
+        public async void backButton_Click(object sender, EventArgs e)
+        {
+            await Navigation.PopModalAsync();
+        }
+
     }
 }

@@ -20,9 +20,9 @@ namespace ProjectManager.Views
         public FinishedProjectsPage()
         {
             InitializeComponent();
-            projectDatabase = new ProjectDatabaseViewModel();
+            //projectDatabase = projectDatabase.Instance;
             finishedProjs = new ObservableCollection<Project>(
-                projectDatabase.GetFinishedProjs().OrderByDescending(proj => proj.StartDate)   
+                //projectDatabase.GetFinishedProjs().OrderByDescending(proj => proj.StartDate)   
             );
             finishedProjectsList.ItemsSource = finishedProjs;
         }
