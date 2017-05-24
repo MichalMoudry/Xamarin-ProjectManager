@@ -54,15 +54,20 @@ namespace ProjectManager.Models
             return database.Table<T>().Where(i => i.Name.Contains(query)).FirstOrDefaultAsync();
         }
 
-        //Task database specific command.
+        //Task database specific method.
         public Task<List<T>> GetCompletedTasksByID<T>(int id) where T : class, Interfaces.IDatabaseTemplate, new()
         {
             return database.QueryAsync<T>($"SELECT * FROM [ProjTask] WHERE [ProjectID] = {id} AND [IsCompleted] = 1 ORDER BY [StartDate] DESC");
         }
-        //Task database specific command.
+        //Task database specific method.
         public Task<List<T>> GetUnfinishedTasksByID<T>(int id) where T : class, Interfaces.IDatabaseTemplate, new()
         {
             return database.QueryAsync<T>($"SELECT * FROM [ProjTask] WHERE [ProjectID] = {id} AND [IsCompleted] = 0 ORDER BY [StartDate] DESC");
+        }
+        //Task database specific method.
+        public Task<List<T>> GetProjectsTasks<T>(int projectId) where T : class, Interfaces.IDatabaseTemplate, new()
+        {
+            return database.QueryAsync<T>($"SELECT * FROM [ProjTask] WHERE [ProjectID] = {projectId} ORDER BY [StartDate] DESC");
         }
     }
 }

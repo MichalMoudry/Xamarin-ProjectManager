@@ -20,9 +20,9 @@ namespace ProjectManager.Views
         public FinishedProjectsPage()
         {
             InitializeComponent();
-            //projectDatabase = projectDatabase.Instance;
+            projectDatabase = ProjectDatabaseViewModel.Instance();
             finishedProjs = new ObservableCollection<Project>(
-                //projectDatabase.GetFinishedProjs().OrderByDescending(proj => proj.StartDate)   
+                projectDatabase.GetFinishedProjs().OrderByDescending(proj => proj.StartDate)   
             );
             finishedProjectsList.ItemsSource = finishedProjs;
         }
@@ -36,11 +36,7 @@ namespace ProjectManager.Views
             if (finishedProjectsList.SelectedItem != null)
             {
                 var tempObj = finishedProjectsList.SelectedItem as Project;
-                bool res = await DisplayAlert($"{tempObj.Name}", $"Start date: {tempObj.StartDate}\nEnd date: {tempObj.EndDate}\nIs completed: {Convert.ToBoolean(tempObj.IsCompleted)}", "Edit", "Cancel");
-                if (res.Equals(true))
-                {
-                    await Navigation.PushModalAsync(new ProjectPage(tempObj));
-                }
+                await Navigation.PushModalAsync(new ProjectPage(tempObj));
                 finishedProjectsList.SelectedItem = null;
             }
         }

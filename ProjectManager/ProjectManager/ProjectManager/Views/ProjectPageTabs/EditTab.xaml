@@ -19,6 +19,9 @@
             <Label Text="End date:" TextColor="White" FontSize="16" />
             <DatePicker x:Name="itemEndDate" Format="dd.MM.yy" />
 
+            <Label Text="Predecesor ID:" x:Name="predIDLabel" IsVisible="False" TextColor="White" FontSize="16" />
+            <Entry x:Name="predID" IsVisible="False" />
+
             <Label Text="Status: " TextColor="White" FontSize="16" VerticalTextAlignment="Center" />
             <Switch x:Name="itemStatus" VerticalOptions="Center" />
         </StackLayout>

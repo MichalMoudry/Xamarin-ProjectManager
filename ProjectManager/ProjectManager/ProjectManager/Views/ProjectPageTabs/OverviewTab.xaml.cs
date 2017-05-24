@@ -30,8 +30,6 @@ namespace ProjectManager.Views.ProjectPageTabs
                 finishedTasks
                 );
 
-            
-
             if (unfinishedTasks != 0 || finishedTasks != 0)
             {
                 projectProgress.ProgressTo(finishedTasks / unfinishedTasks, 250, Easing.Linear);

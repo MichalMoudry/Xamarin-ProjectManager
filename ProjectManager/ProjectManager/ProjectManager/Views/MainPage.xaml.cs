@@ -112,7 +112,7 @@ namespace ProjectManager.Views
         /// </summary>
         private void ChangeUIToOS()
         {
-            if (Device.OS.Equals(TargetPlatform.Android))
+            if (Device.RuntimePlatform.Equals("Android"))
             {
                 projName.TextColor = Color.White;
                 projName.PlaceholderColor = Color.White;
@@ -120,10 +120,6 @@ namespace ProjectManager.Views
                 projEndDate.TextColor = Color.White;
 
                 //reloadButton.Image = "Assets/ReloadIcon_Material.png";
-            }
-            else if(Device.OS.Equals(TargetPlatform.Windows))
-            {
-                //reloadButton.Image = "Assets/ReloadIcon_Win10.png";
             }
         }
 

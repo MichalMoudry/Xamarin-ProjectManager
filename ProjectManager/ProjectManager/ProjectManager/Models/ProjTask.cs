@@ -47,5 +47,12 @@ namespace ProjectManager.Models
             set { _endDate = value; }
         }
 
+        private int _predecesorID;
+        public int PredecesorID
+        {
+            get { return _predecesorID; }
+            set { _predecesorID = value; }
+        }
+
     }
 }

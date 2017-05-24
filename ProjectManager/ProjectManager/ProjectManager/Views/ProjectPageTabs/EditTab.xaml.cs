@@ -47,6 +47,9 @@ namespace ProjectManager.Views.ProjectPageTabs
         {
             nameEntryLabel.Text = "Task name:";
             itemName.Text = $"{projTask.Name}";
+            predID.Text = $"{projTask.PredecesorID}";
+            predID.IsVisible = true;
+            predIDLabel.IsVisible = true;
             backButton.IsVisible = true;
 
             if (projTask.IsCompleted == 1)
@@ -84,21 +87,22 @@ namespace ProjectManager.Views.ProjectPageTabs
         private void ChangeUIToOS()
         {
             //Android UI.
-            if (Device.OS.Equals(TargetPlatform.Android))
+            if (Device.RuntimePlatform.Equals("Android"))
             {
                 itemName.TextColor = Color.White;
                 itemStartDate.TextColor = Color.White;
                 itemEndDate.TextColor = Color.White;
+                predID.TextColor = Color.White;
 
                 //Project date
-                itemStartDate.Date = Convert.ToDateTime(proj.StartDate);
+                /*itemStartDate.Date = Convert.ToDateTime(proj.StartDate);
                 itemEndDate.Date = Convert.ToDateTime(proj.EndDate);
                 //Task date
                 itemStartDate.Date = Convert.ToDateTime(projTask.StartDate);
-                itemEndDate.Date = Convert.ToDateTime(projTask.EndDate);
+                itemEndDate.Date = Convert.ToDateTime(projTask.EndDate);*/
             }
             //Windows UI.
-            else if(Device.OS.Equals(TargetPlatform.Windows))
+            else if(Device.RuntimePlatform.Equals("Windows"))
             {
                 //Project date
                 if (proj != null)

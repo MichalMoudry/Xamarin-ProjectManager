@@ -66,5 +66,10 @@ namespace ProjectManager.ViewModels
         {
             return TaskDb.GetUnfinishedTasksByID<ProjTask>(projectID).Result;
         }
+
+        public List<ProjTask> GetProjTasks(int projectID)
+        {
+            return TaskDb.GetProjectsTasks<ProjTask>(projectID).Result;
+        }
     }
 }

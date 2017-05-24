@@ -26,6 +26,9 @@
                             </StackLayout>
 
                             <StackLayout Orientation="Horizontal" Margin="10,0,0,0">
+                                <Label Text="ID: " FontSize="11" TextColor="White" />
+                                <Label Text="{Binding ID}" FontSize="11" TextColor="White" />
+                                <Label Text=" • " FontSize="11" TextColor="White" />
                                 <Label Text="Start date: " FontSize="11" TextColor="White" />
                                 <Label Text="{Binding StartDate}" FontSize="11" TextColor="White" />
                                 <Label Text=" • " FontSize="11" TextColor="White" />
@@ -44,7 +47,7 @@
         <Button x:Name="addTaskButton" Clicked="addTaskButton_Clicked" Text="Add task" BackgroundColor="#2a4254" TextColor="White" WidthRequest="135" HeightRequest="45" HorizontalOptions="Center" VerticalOptions="Center" />
 
         <Frame x:Name="addTaskPopup" BackgroundColor="#2c4659" IsVisible="False">
-            <StackLayout HorizontalOptions="Center">
+            <StackLayout HorizontalOptions="CenterAndExpand">
                 <Label Text="Name:" TextColor="White" FontSize="16" />
                 <Entry Placeholder="Task name..." x:Name="taskName" />
 
@@ -53,6 +56,9 @@
 
                 <Label Text="End date:" TextColor="White" FontSize="16" />
                 <DatePicker x:Name="taskEndDate" Format="dd.MM.yy" />
+
+                <Label Text="Predecesor:" TextColor="White" FontSize="16" />
+                <Entry x:Name="predID" IsEnabled="False" Placeholder="Predecesor ID..." />
 
                 <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                     <Button x:Name="submitTaskButton" Clicked="submitTaskButton_Clicked" Text="Submit" BackgroundColor="#45667d" WidthRequest="135" HeightRequest="45" TextColor="White" />

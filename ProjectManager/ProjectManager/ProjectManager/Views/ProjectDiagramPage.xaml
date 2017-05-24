@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectManager.Views.ProjectDiagramPage"
+             Title="ProjectDiagramPage">
+    
+    <StackLayout BackgroundColor="#395a73">
+        <Frame x:Name="pageTitleFrame" BackgroundColor="#2c4659" Margin="0,15,0,0">
+            <Label Text="Project diagram" TextColor="White" Font="Bold, 26" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+        </Frame>
+    </StackLayout>
+
+    <Label x:Name="projectDataDisplay" TextColor="White" FontSize="16" />
+
+    <StackLayout x:Name="diagram">
+    </StackLayout>
+
+</ContentPage>
