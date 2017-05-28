@@ -36,8 +36,6 @@ namespace ProjectManager.ViewModels
             }
         }
 
-        private Project proj = new Project();
-
         public async Task SaveItem(Project item)
         {
             await ProjectDb.SaveItemAsync(item);

@@ -19,19 +19,48 @@ namespace ProjectManager.Views
         public ProjectDiagramPage(Project projectData)
         {
             InitializeComponent();
+            tasks = new List<ProjTask>(
+                ProjTaskDatabaseViewModel.Instance().GetProjTasks(projectData.ID).OrderBy(i => i.ID)
+            );
             projectDataDisplay.Text = $"Project: {projectData.Name}";
-            projectTasks = ProjTaskDatabaseViewModel.Instance().GetProjTasks(projectData.ID);
 
-            foreach (ProjTask item in projectTasks)
+            ColumnDefinition column = new ColumnDefinition
             {
-                //Adding items to diagram.
-                /*diagram.Children.Add(new Label {
-                    TextColor = Color.White,
-                    FontSize = 16,
-                    Text = $"{item.Name}"
-                });*/
+                Width = GridLength.Auto
+            };
+            diagram.ColumnDefinitions.Add(column);
+            for (int i = 0; i < ProjTaskDatabaseViewModel.Instance().GetProjTasks(projectData.ID).Count; i++)
+            {
+                //Adding row and column definitions.
+                RowDefinition row = new RowDefinition
+                {
+                    Height = GridLength.Auto
+                };
+                
+                diagram.RowDefinitions.Add(row);
+
+                //Creating label for task.
+                Label label = new Label();
+                label.Text = $"{tasks[i].IDinProject}.{tasks[i].Name}\nStart date: {tasks[i].StartDate} • End date: {tasks[i].EndDate} • Is Completed: {Convert.ToBoolean(tasks[i].IsCompleted)}";
+                label.TextColor = Color.White;
+                label.FontSize = 14;
+                label.HeightRequest = 55;
+                label.VerticalTextAlignment = TextAlignment.Center;
+                label.Margin = new Thickness(10 + (i * 10), 0, 10, 0);
+                label.BackgroundColor = Color.FromHex("#6088a6");
+
+                Grid.SetRow(label, i);
+                Grid.SetColumn(label, 0);
+                //Adding labels to grid.
+                diagram.Children.Add(label);
             }
         }
-        private List<ProjTask> projectTasks = new List<ProjTask>();
+
+        List<ProjTask> tasks;
+
+        private async void backButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopModalAsync();
+        }
     }
 }

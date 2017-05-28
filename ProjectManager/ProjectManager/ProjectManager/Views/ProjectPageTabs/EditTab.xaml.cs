@@ -47,9 +47,6 @@ namespace ProjectManager.Views.ProjectPageTabs
         {
             nameEntryLabel.Text = "Task name:";
             itemName.Text = $"{projTask.Name}";
-            predID.Text = $"{projTask.PredecesorID}";
-            predID.IsVisible = true;
-            predIDLabel.IsVisible = true;
             backButton.IsVisible = true;
 
             if (projTask.IsCompleted == 1)
@@ -92,14 +89,6 @@ namespace ProjectManager.Views.ProjectPageTabs
                 itemName.TextColor = Color.White;
                 itemStartDate.TextColor = Color.White;
                 itemEndDate.TextColor = Color.White;
-                predID.TextColor = Color.White;
-
-                //Project date
-                /*itemStartDate.Date = Convert.ToDateTime(proj.StartDate);
-                itemEndDate.Date = Convert.ToDateTime(proj.EndDate);
-                //Task date
-                itemStartDate.Date = Convert.ToDateTime(projTask.StartDate);
-                itemEndDate.Date = Convert.ToDateTime(projTask.EndDate);*/
             }
             //Windows UI.
             else if(Device.RuntimePlatform.Equals("Windows"))
@@ -178,10 +167,12 @@ namespace ProjectManager.Views.ProjectPageTabs
                     proj.Name = itemName.Text;
                     proj.StartDate = $"{itemStartDate.Date.Day}.{itemStartDate.Date.Month}.{itemStartDate.Date.Year}";
                     proj.EndDate = $"{itemEndDate.Date.Day}.{itemEndDate.Date.Month}.{itemEndDate.Date.Year}";
+                    
                     if (itemStatus.IsToggled)
                     {
                         proj.IsCompleted = 1;
                         MainPage.projects.Remove(proj);
+                        FinishedProjectsPage.finishedProjs.Remove(proj);
                         FinishedProjectsPage.finishedProjs.Add(proj);
                     }
                     else
@@ -191,7 +182,7 @@ namespace ProjectManager.Views.ProjectPageTabs
                         MainPage.projects.Add(proj);
                         FinishedProjectsPage.finishedProjs.Remove(proj);
                     }
-                    await DisplayAlert("Result", "Project was edited.", "Ok");
+                    await DisplayAlert("Editing project", "Project was successfully edited.", "Ok");
                     await projectDatabase.SaveItem(proj);
                 }
                 else
@@ -207,17 +198,34 @@ namespace ProjectManager.Views.ProjectPageTabs
                     projTask.Name = itemName.Text;
                     projTask.StartDate = $"{itemStartDate.Date.Day}.{itemStartDate.Date.Month}.{itemStartDate.Date.Year}";
                     projTask.EndDate = $"{itemEndDate.Date.Day}.{itemEndDate.Date.Month}.{itemEndDate.Date.Year}";
+
                     if (itemStatus.IsToggled)
                     {
                         projTask.IsCompleted = 1;
-                        TaskTab.unfinishedTasks.Remove(projTask);
-                        FinishedTasksTab.tasks.Add(projTask);
+                        if (TaskTab.unfinishedTasks.Contains(projTask))
+                        {
+                            FinishedTasksTab.tasks.Add(projTask);
+                            TaskTab.unfinishedTasks.Remove(projTask);
+                        }
+                        else if (FinishedTasksTab.tasks.Contains(projTask))
+                        {
+                            FinishedTasksTab.tasks.Remove(projTask);
+                            FinishedTasksTab.tasks.Add(projTask);
+                        }
                     }
                     else
                     {
                         projTask.IsCompleted = 0;
-                        TaskTab.unfinishedTasks.Add(projTask);
-                        FinishedTasksTab.tasks.Remove(projTask);
+                        if (FinishedTasksTab.tasks.Contains(projTask))
+                        {
+                            FinishedTasksTab.tasks.Remove(projTask);
+                            TaskTab.unfinishedTasks.Add(projTask);
+                        }
+                        else if (TaskTab.unfinishedTasks.Contains(projTask))
+                        {
+                            TaskTab.unfinishedTasks.Remove(projTask);
+                            TaskTab.unfinishedTasks.Add(projTask);
+                        }
                     }
                     await taskDatabase.SaveItem(projTask);
                     await Navigation.PopModalAsync();
@@ -235,7 +243,9 @@ namespace ProjectManager.Views.ProjectPageTabs
         /// <returns>T if form is correct, F if not.</returns>
         private bool FormValidation()
         {
-            if (string.IsNullOrEmpty(itemName.Text).Equals(false) && itemStartDate != null && itemEndDate != null && (itemStartDate.Date.CompareTo(itemEndDate.Date).Equals(-1) || itemStartDate.Date.CompareTo(itemEndDate.Date).Equals(0)))
+            if (string.IsNullOrEmpty(itemName.Text).Equals(false) && 
+                itemStartDate != null && itemEndDate != null && 
+                (itemStartDate.Date.CompareTo(itemEndDate.Date).Equals(-1) || itemStartDate.Date.CompareTo(itemEndDate.Date).Equals(0)))
             {
                 return true;
             }
@@ -249,6 +259,6 @@ namespace ProjectManager.Views.ProjectPageTabs
         {
             await Navigation.PopModalAsync();
         }
-
+        
     }
 }

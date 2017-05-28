@@ -11,6 +11,5 @@ namespace ProjectManager.Interfaces
         Task SaveItem(T item);
         List<T> LoadData();
         Task DeleteItem(T item);
-        Task<T> GetItem(int id);
     }
 }

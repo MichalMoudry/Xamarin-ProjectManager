@@ -10,11 +10,11 @@
             <Label Text="Finished projects" TextColor="White" Font="Bold, 26" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
         </Frame>
 
-        <ListView x:Name="finishedProjectsList" ItemSelected="finishedProjectsList_ItemSelected">
+        <ListView x:Name="finishedProjectsList" ItemSelected="finishedProjectsList_ItemSelected" RowHeight="70">
             <ListView.ItemTemplate>
                 <DataTemplate>
 
-                    <ViewCell>
+                    <ViewCell IsEnabled="True">
                         <StackLayout>
                             <Label HeightRequest="2" />
                             <StackLayout Orientation="Horizontal" Margin="10,0,0,0">

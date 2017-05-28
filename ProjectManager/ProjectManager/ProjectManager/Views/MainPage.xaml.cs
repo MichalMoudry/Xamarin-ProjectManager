@@ -26,7 +26,7 @@ namespace ProjectManager.Views
 
             projectDatabase = ProjectDatabaseViewModel.Instance();
             projects = new ObservableCollection<Project>(
-                projectDatabase.LoadData().OrderByDescending(proj => proj.StartDate)
+                projectDatabase.LoadData().OrderByDescending(i => i.StartDate)
             );
             projectsList.ItemsSource = projects;
         }
@@ -143,11 +143,6 @@ namespace ProjectManager.Views
             if (projectsList.SelectedItem != null)
             {
                 var tempObj = projectsList.SelectedItem as Project;
-                /*var answer = await DisplayAlert($"{tempObj.Name}", $"Start date: {tempObj.StartDate}\nEnd date: {tempObj.EndDate}\nRemaining tasks: {unfinishedTasks}\nIs completed: {Convert.ToBoolean(tempObj.IsCompleted)}", "Edit", "Cancel");
-                if (answer.Equals(true))
-                {
-                    await Navigation.PushModalAsync(new ProjectPage(tempObj));
-                }*/
                 await Navigation.PushModalAsync(new ProjectPage(tempObj));
                 projectsList.SelectedItem = null;
             }

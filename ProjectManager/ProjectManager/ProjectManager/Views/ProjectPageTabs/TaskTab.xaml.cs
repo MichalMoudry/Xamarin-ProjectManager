@@ -30,11 +30,6 @@ namespace ProjectManager.Views.ProjectPageTabs
             unfinishedTaskList.ItemsSource = unfinishedTasks;
             proj = projectData;
 
-            if (taskDatabase.GetProjTasks(projectData.ID).Count > 0)
-            {
-                predID.IsEnabled = true;
-            }
-
             taskStartDate.MinimumDate = DateTime.Now;
             taskEndDate.MinimumDate = DateTime.Now;
         }
@@ -66,7 +61,7 @@ namespace ProjectManager.Views.ProjectPageTabs
                 projTask.StartDate = $"{taskStartDate.Date.Day}.{taskStartDate.Date.Month}.{taskStartDate.Date.Year}";
                 projTask.EndDate = $"{taskEndDate.Date.Day}.{taskEndDate.Date.Month}.{taskEndDate.Date.Year}";
                 projTask.ProjectID = proj.ID;
-                projTask.PredecesorID = Convert.ToInt32(predID.Text);
+                projTask.IDinProject = ViewModels.ProjTaskDatabaseViewModel.Instance().GetProjTasks(proj.ID).Count + 1;
                 projTask.IsCompleted = 0;
                 unfinishedTasks.Add(projTask);
                 ClearForm();
@@ -85,12 +80,9 @@ namespace ProjectManager.Views.ProjectPageTabs
         /// <returns>T if form is filled properly, F if  not.</returns>
         private bool taskFormValidation()
         {
-            bool temp = int.TryParse(predID.Text, out int num).Equals(true);
             if (string.IsNullOrEmpty(taskName.Text).Equals(false) && 
                 taskStartDate != null && taskEndDate.Date != null && 
-                (taskEndDate.Date.CompareTo(taskStartDate.Date).Equals(1) || taskEndDate.Date.CompareTo(taskStartDate.Date).Equals(0)) && 
-                string.IsNullOrEmpty(predID.Text).Equals(false) &&
-                temp)
+                (taskEndDate.Date.CompareTo(taskStartDate.Date).Equals(1) || taskEndDate.Date.CompareTo(taskStartDate.Date).Equals(0)))
             {
                 return true;
             }
@@ -121,8 +113,6 @@ namespace ProjectManager.Views.ProjectPageTabs
                 taskName.TextColor = Color.White;
                 taskStartDate.TextColor = Color.White;
                 taskEndDate.TextColor = Color.White;
-                predID.TextColor = Color.White;
-                predID.PlaceholderColor = Color.White;
             }
         }
 

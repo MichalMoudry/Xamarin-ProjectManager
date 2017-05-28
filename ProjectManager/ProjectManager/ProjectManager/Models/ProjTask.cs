@@ -26,6 +26,13 @@ namespace ProjectManager.Models
             set { _projectID = value; }
         }
 
+        private int _idInProject;
+        public int IDinProject
+        {
+            get{ return _idInProject; }
+            set { _idInProject = value; }
+        }
+
         private int _isCompleted;
         public int IsCompleted
         {
@@ -45,13 +52,6 @@ namespace ProjectManager.Models
         {
             get { return _endDate; }
             set { _endDate = value; }
-        }
-
-        private int _predecesorID;
-        public int PredecesorID
-        {
-            get { return _predecesorID; }
-            set { _predecesorID = value; }
         }
 
     }

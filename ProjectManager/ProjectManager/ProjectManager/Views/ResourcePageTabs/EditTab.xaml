@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectManager.Views.ResourcePageTabs.EditTab"
+             Title="Edit">
+    <StackLayout BackgroundColor="#395a73">
+
+        <Frame x:Name="pageTitleFrame" BackgroundColor="#2c4659" Margin="0,15,0,0">
+            <Label Text="Edit" TextColor="White" Font="Bold, 26" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+        </Frame>
+
+        <StackLayout HorizontalOptions="Center" Padding="3">
+            <Label Text="Resource name:" TextColor="White" FontSize="16" />
+            <Entry x:Name="resourceNameEntry" />
+
+            <Label Text="Resource type:" TextColor="White" FontSize="16" />
+            <Picker x:Name="resourceTypePicker" ItemDisplayBinding="{Binding Name}" />
+
+            <Label Text="Project ID:" TextColor="White" FontSize="16" />
+            <Entry x:Name="resourceProjectEntry" />
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,5,0,0">
+            <Button x:Name="editButton" Clicked="editButton_Clicked" HorizontalOptions="Center" Text="Edit" WidthRequest="135" HeightRequest="45" BackgroundColor="#2a4254" TextColor="White" />
+            <Button x:Name="deleteButton" Clicked="deleteButton_Clicked" HorizontalOptions="Center" Text="Delete" WidthRequest="135" HeightRequest="45" BackgroundColor="#2a4254" TextColor="White" />
+        </StackLayout>
+
+        <Button x:Name="backButton" Clicked="backButton_Clicked" HorizontalOptions="Center" Margin="0,5,0,0" Text="Back" WidthRequest="135" HeightRequest="45" BackgroundColor="#2a4254" TextColor="White" />
+
+    </StackLayout>
+</ContentPage>

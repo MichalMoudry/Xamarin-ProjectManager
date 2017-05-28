@@ -1,35 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProjectManager.Views.MainPage"
-             Title="Projects">
+             x:Class="ProjectManager.Views.ResourcesPage"
+             Title="Resources">
 
     <StackLayout BackgroundColor="#395a73">
 
         <Frame BackgroundColor="#2c4659" Margin="0,15,0,0">
-            <Label Text="Ongoing projects" TextColor="White" Font="Bold, 26" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            <Label Text="Resources" TextColor="White" Font="Bold, 26" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
         </Frame>
 
-        <ListView x:Name="projectsList" ItemSelected="projectsList_ItemSelected" RowHeight="70">
+        <ListView x:Name="resourceList" ItemSelected="resourceList_ItemSelected" RowHeight="62">
             <ListView.ItemTemplate>
                 <DataTemplate>
 
                     <ViewCell IsEnabled="True">
                         <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                             <Label HeightRequest="2" />
+
                             <StackLayout Orientation="Horizontal" Margin="10,0,0,0">
                                 <Label Text="{Binding Name}" TextColor="White" FontAttributes="Bold" FontSize="19" />
                             </StackLayout>
-
                             <StackLayout Orientation="Horizontal" Margin="10,0,0,0">
-                                <Label Text="Start date: " FontSize="11" TextColor="White" />
-                                <Label Text="{Binding StartDate}" FontSize="11" TextColor="White" />
+                                <Label Text="Type: " FontSize="11" TextColor="White" />
+                                <Label Text="{Binding Type}" FontSize="11" TextColor="White" />
                                 <Label Text=" • " FontSize="11" TextColor="White" />
-                                <Label Text="End date: " FontSize="11" TextColor="White" />
-                                <Label Text="{Binding EndDate}" FontSize="11" TextColor="White" />
+                                <Label Text="Cost: " FontSize="11" TextColor="White" />
+                                <Label Text="{Binding Cost}" FontSize="11" TextColor="White" />
                             </StackLayout>
-                            <Label HeightRequest="2" />
+
                             <Label HeightRequest="0.7" BackgroundColor="White" />
+                            <Label HeightRequest="2" />
                         </StackLayout>
                     </ViewCell>
 
@@ -37,25 +38,26 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Button x:Name="displayPopup" Clicked="displayPopup_Clicked" Text="Add project" BackgroundColor="#2a4254" TextColor="White" WidthRequest="135" HeightRequest="45" HorizontalOptions="Center" />
+        <Button x:Name="displayPopup" Clicked="displayPopup_Clicked" Text="Add resource" BackgroundColor="#2a4254" TextColor="White" WidthRequest="135" HeightRequest="45" HorizontalOptions="Center" />
 
-        <Frame x:Name="addProjPopup" BackgroundColor="#2c4659" IsVisible="False">
+        <Frame x:Name="addResourcePopup" BackgroundColor="#2c4659" IsVisible="False">
             <StackLayout HorizontalOptions="Center">
                 <Label Text="Name:" TextColor="White" FontSize="16" />
-                <Entry Placeholder="Project name..." x:Name="projName" />
+                <Entry x:Name="resourceName" />
 
-                <Label Text="Start date:" TextColor="White" FontSize="16" />
-                <DatePicker x:Name="projStartDate" Format="dd.MM.yy" />
+                <Label Text="Resource type:" TextColor="White" FontSize="16" />
+                <Picker x:Name="resourceTypePicker" />
 
-                <Label Text="End date:" TextColor="White" FontSize="16" />
-                <DatePicker x:Name="projEndDate" Format="dd.MM.yy" />
+                <Label Text="Resource cost:" TextColor="White" FontSize="16" />
+                <Entry x:Name="resourceCost" Text="0" />
 
                 <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                    <Button Text="Submit" Clicked="AddProject" x:Name="submitProjectButton" BackgroundColor="#45667d" WidthRequest="135" HeightRequest="45" TextColor="White" />
+                    <Button Text="Submit" Clicked="submitResourceButton_Clicked" x:Name="submitResourceButton" BackgroundColor="#45667d" WidthRequest="135" HeightRequest="45" TextColor="White" />
                     <Button Text="Close" Clicked="closePopupButton_Clicked" x:Name="closePopupButton" BackgroundColor="#45667d" WidthRequest="135" HeightRequest="45" TextColor="White" />
                 </StackLayout>
             </StackLayout>
         </Frame>
 
     </StackLayout>
+
 </ContentPage>

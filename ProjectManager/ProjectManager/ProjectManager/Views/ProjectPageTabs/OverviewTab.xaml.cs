@@ -18,31 +18,61 @@ namespace ProjectManager.Views.ProjectPageTabs
         public OverviewTab(Project projectData)
         {
             InitializeComponent();
+            proj = projectData;
             pageTitle.Text = projectData.Name;
             taskDatabase = ViewModels.ProjTaskDatabaseViewModel.Instance();
             finishedTasks = taskDatabase.GetProjectTasks(projectData.ID).Count;
             unfinishedTasks = taskDatabase.GetUnfinishedTasks(projectData.ID).Count;
 
-            projectDataDisplay.Text = String.Format("Start date: {0}\nEnd date: {1}\nUnfinished tasks: {2}\nFinished tasks: {3}",
+            //Counting cost of project.
+            projResourcesPerMonth = new List<ProjectResource>(
+                ViewModels.ProjectResourceDatabaseViewModel.Instance().GetItemsByID(projectData.ID).Where(i => i.Type.Equals("Work"))
+            );
+            projOneTimeResourses = new List<ProjectResource>(
+                ViewModels.ProjectResourceDatabaseViewModel.Instance().GetItemsByID(projectData.ID).Where(i => i.Type.Equals("Work").Equals(false))
+            );
+            foreach (ProjectResource item in projResourcesPerMonth)
+            {
+                costPerMonth += item.Cost;
+            }
+            foreach (ProjectResource item in projOneTimeResourses)
+            {
+                oneTimeCost += item.Cost;
+            }
+
+            projectDataDisplay.Text = String.Format("Start date: {0}\nEnd date: {1}\nUnfinished tasks: {2}\nFinished tasks: {3}\nCost per month: {4}\nOne time cost: {5}",
                 projectData.StartDate,
                 projectData.EndDate,
                 unfinishedTasks,
-                finishedTasks
+                finishedTasks,
+                costPerMonth,
+                oneTimeCost
                 );
-
-            if (unfinishedTasks != 0 || finishedTasks != 0)
-            {
-                projectProgress.ProgressTo(finishedTasks / unfinishedTasks, 250, Easing.Linear);
-            }
+            
         }
 
         ViewModels.ProjTaskDatabaseViewModel taskDatabase;
+        Project proj;
         int finishedTasks;
         int unfinishedTasks;
+        int costPerMonth;
+        int oneTimeCost;
+        List<ProjectResource> projResourcesPerMonth;
+        List<ProjectResource> projOneTimeResourses;
 
         public async void backButton_Click(object sender, EventArgs e)
         {
             await Navigation.PopModalAsync();
+        }
+
+        private async void viewDiagramButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new ProjectDiagramPage(proj));
+        }
+
+        private async void resourcesButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new ResourcesPage(proj));
         }
     }
 }
