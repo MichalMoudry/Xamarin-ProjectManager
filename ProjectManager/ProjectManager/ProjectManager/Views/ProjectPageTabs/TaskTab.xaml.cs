@@ -21,7 +21,7 @@ namespace ProjectManager.Views.ProjectPageTabs
         {
             InitializeComponent();
 
-            ChangeUIToOS();
+            ChangeUIToOS(projectData);
 
             taskDatabase = ViewModels.ProjTaskDatabaseViewModel.Instance();
             unfinishedTasks = new ObservableCollection<ProjTask>(
@@ -31,7 +31,8 @@ namespace ProjectManager.Views.ProjectPageTabs
             proj = projectData;
 
             taskStartDate.MinimumDate = DateTime.Now;
-            taskEndDate.MinimumDate = DateTime.Now;
+            string[] temp = projectData.EndDate.Split('.');
+            taskEndDate.MaximumDate = new DateTime(Convert.ToInt32(temp[2]), Convert.ToInt32(temp[1]), Convert.ToInt32(temp[0]));
         }
         
         public static ObservableCollection<ProjTask> unfinishedTasks;
@@ -105,7 +106,7 @@ namespace ProjectManager.Views.ProjectPageTabs
         /// <summary>
         /// Method for changing UI to device OS.
         /// </summary>
-        private void ChangeUIToOS()
+        private void ChangeUIToOS(Project projData)
         {
             if (Device.RuntimePlatform.Equals("Android"))
             {
@@ -113,6 +114,11 @@ namespace ProjectManager.Views.ProjectPageTabs
                 taskName.TextColor = Color.White;
                 taskStartDate.TextColor = Color.White;
                 taskEndDate.TextColor = Color.White;
+                taskEndDate.MaximumDate = Convert.ToDateTime(projData.EndDate);
+            }else if (Device.RuntimePlatform.Equals("Windows"))
+            {
+                string[] temp = projData.EndDate.Split('.');
+                taskEndDate.MaximumDate = new DateTime(Convert.ToInt32(temp[2]), Convert.ToInt32(temp[1]), Convert.ToInt32(temp[0]));
             }
         }
 

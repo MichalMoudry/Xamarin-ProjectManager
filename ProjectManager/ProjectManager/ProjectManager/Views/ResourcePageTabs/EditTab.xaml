@@ -16,6 +16,9 @@
             <Label Text="Resource type:" TextColor="White" FontSize="16" />
             <Picker x:Name="resourceTypePicker" ItemDisplayBinding="{Binding Name}" />
 
+            <Label Text="Resource type:" TextColor="White" FontSize="16" />
+            <Entry x:Name="resourceCostEntry" />
+
             <Label Text="Project ID:" TextColor="White" FontSize="16" />
             <Entry x:Name="resourceProjectEntry" />
         </StackLayout>

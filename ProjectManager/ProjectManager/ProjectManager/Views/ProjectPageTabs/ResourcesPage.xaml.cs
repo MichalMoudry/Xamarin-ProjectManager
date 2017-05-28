@@ -85,7 +85,7 @@ namespace ProjectManager.Views.ProjectPageTabs
             if (assignedResourceList.SelectedItem != null)
             {
                 var tempObj = assignedResourceList.SelectedItem as ProjectResource;
-                var result = await DisplayAlert("Edit resource", "Do you want to edit this resource?", "Edit", "Cancel");
+                var result = await DisplayAlert("Edit resource", "What do you want with this resource?", "Edit", "Cancel");
                 if (result.Equals(true))
                 {
                     await Navigation.PushModalAsync(new ResourcePageTabs.EditTab(tempObj));

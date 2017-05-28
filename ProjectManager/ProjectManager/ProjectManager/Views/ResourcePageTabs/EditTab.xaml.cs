@@ -26,6 +26,7 @@ namespace ProjectManager.Views.ResourcePageTabs
             resourceTypePicker.Items.Add("Cost");
             resourceTypePicker.SelectedItem = resourceData.Type;
             resourceProjectEntry.Text = $"{resourceData.ProjectID}";
+            resourceCostEntry.Text = $"{resourceData.Cost}";
             projResource = resourceData;
         }
 
@@ -39,14 +40,18 @@ namespace ProjectManager.Views.ResourcePageTabs
                 resourceTypePicker.TextColor = Color.White;
                 resourceTypePicker.Title = "Resource type";
                 resourceProjectEntry.TextColor = Color.White;
+                resourceCostEntry.TextColor = Color.White;
             }
         }
 
         private bool FormValidation()
         {
+            bool numCheck = int.TryParse(resourceCostEntry.Text, out int num);
             if (string.IsNullOrEmpty(resourceNameEntry.Text).Equals(false) &&
                 resourceTypePicker.SelectedItem != null &&
-                string.IsNullOrEmpty(resourceProjectEntry.Text).Equals(false))
+                string.IsNullOrEmpty(resourceProjectEntry.Text).Equals(false) &&
+                string.IsNullOrEmpty(resourceCostEntry.Text).Equals(false) &&
+                numCheck)
             {
                 return true;
             }
@@ -69,6 +74,7 @@ namespace ProjectManager.Views.ResourcePageTabs
                 projResource.Name = resourceNameEntry.Text;
                 projResource.Type = resourceTypePicker.SelectedItem as string;
                 projResource.ProjectID = Convert.ToInt32(resourceProjectEntry.Text);
+                projResource.Cost = Convert.ToInt32(resourceCostEntry.Text);
                 await ViewModels.ProjectResourceDatabaseViewModel.Instance().SaveItem(projResource);
                 await Navigation.PopModalAsync();
                 ResourcesPage.resources.Add(projResource);

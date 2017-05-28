@@ -46,7 +46,7 @@ namespace ProjectManager.Views
                 label.FontSize = 14;
                 label.HeightRequest = 55;
                 label.VerticalTextAlignment = TextAlignment.Center;
-                label.Margin = new Thickness(10 + (i * 10), 0, 10, 0);
+                label.Margin = new Thickness(10 + (i * 20), 0, 10, 0);
                 label.BackgroundColor = Color.FromHex("#6088a6");
 
                 Grid.SetRow(label, i);

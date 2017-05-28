@@ -89,6 +89,22 @@ namespace ProjectManager.Views.ProjectPageTabs
                 itemName.TextColor = Color.White;
                 itemStartDate.TextColor = Color.White;
                 itemEndDate.TextColor = Color.White;
+                //Project date
+                if (proj != null)
+                {
+                    var temp1 = proj.StartDate.Split('.');
+                    itemStartDate.Date = Convert.ToDateTime($"{temp1[0]}.{temp1[1]}.{temp1[2]}");
+                    temp1 = proj.EndDate.Split('.');
+                    itemEndDate.Date = Convert.ToDateTime($"{temp1[0]}.{temp1[1]}.{temp1[2]}");
+                }
+                //Task date
+                else if (projTask != null)
+                {
+                    var temp1 = projTask.StartDate.Split('.');
+                    itemStartDate.Date = Convert.ToDateTime($"{temp1[0]}.{temp1[1]}.{temp1[2]}");
+                    temp1 = projTask.EndDate.Split('.');
+                    itemEndDate.Date = Convert.ToDateTime($"{temp1[0]}.{temp1[1]}.{temp1[2]}");
+                }
             }
             //Windows UI.
             else if(Device.RuntimePlatform.Equals("Windows"))
@@ -97,17 +113,17 @@ namespace ProjectManager.Views.ProjectPageTabs
                 if (proj != null)
                 {
                     var temp1 = proj.StartDate.Split('.');
-                    var temp2 = proj.EndDate.Split('.');
                     itemStartDate.Date = Convert.ToDateTime($"{temp1[1]}.{temp1[0]}.{temp1[2]}");
-                    itemEndDate.Date = Convert.ToDateTime($"{temp2[1]}.{temp2[0]}.{temp2[2]}");
+                    temp1 = proj.EndDate.Split('.');
+                    itemEndDate.Date = Convert.ToDateTime($"{temp1[1]}.{temp1[0]}.{temp1[2]}"); ;
                 }
                 //Task date
                 else if (projTask != null)
                 {
-                    var temp3 = projTask.StartDate.Split('.');
-                    var temp4 = projTask.EndDate.Split('.');
-                    itemStartDate.Date = Convert.ToDateTime($"{temp3[1]}.{temp3[0]}.{temp3[2]}");
-                    itemEndDate.Date = Convert.ToDateTime($"{temp4[1]}.{temp4[0]}.{temp4[2]}");
+                    var temp1 = projTask.StartDate.Split('.');
+                    itemStartDate.Date = Convert.ToDateTime($"{temp1[1]}.{temp1[0]}.{temp1[2]}");
+                    temp1 = projTask.EndDate.Split('.');
+                    itemEndDate.Date = Convert.ToDateTime($"{temp1[1]}.{temp1[0]}.{temp1[2]}");
                 }
             }
         }
