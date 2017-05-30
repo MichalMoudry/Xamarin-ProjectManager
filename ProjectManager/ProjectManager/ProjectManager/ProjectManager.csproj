@@ -124,7 +124,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Diagrams\DatabaseTableDiagram.cd" />
+    <None Include="Diagrams\DatabaseDiagram.cd" />
+    <None Include="Diagrams\ViewModelDiagram.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

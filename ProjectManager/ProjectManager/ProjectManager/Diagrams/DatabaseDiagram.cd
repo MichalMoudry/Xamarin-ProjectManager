@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ProjectManager.Models.Project">
+    <Position X="11" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAoAIAAAAAAASgAAAAABAAAAAAAEAAAAA=</HashCode>
+      <FileName>Models\Project.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProjectManager.Models.ProjectDatabase">
+    <Position X="10.75" Y="7" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAABACAAAABAAAABAAAAAAAAAAAAQAEA=</HashCode>
+      <FileName>Models\ProjectDatabase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectManager.Models.ProjectResource">
+    <Position X="8" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAIAAAACAAgAQAAAAAABQABAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Models\ProjectResource.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProjectManager.Models.ProjTask">
+    <Position X="5.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAIAAAAAAAoAIAgAAAAASgBAAAABAAAAAAAEAEAAA=</HashCode>
+      <FileName>Models\ProjTask.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProjectManager.Models.ProjectResourceDatabase">
+    <Position X="7.75" Y="7" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABACAAACBAAAABAAAAAAAAAAAAQAEA=</HashCode>
+      <FileName>Models\ProjectResourceDatabase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectManager.Models.TaskDatabase">
+    <Position X="4.75" Y="7" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABACAAAABAAAABEEAAAAAAAAACQAEA=</HashCode>
+      <FileName>Models\TaskDatabase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="ProjectManager.Interfaces.IDatabaseTemplate">
+    <Position X="8" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IDatabaseTemplate.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -12,7 +12,6 @@ using Xamarin.Forms.Xaml;
 
 namespace ProjectManager.Views
 {
-
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : ContentPage
     {

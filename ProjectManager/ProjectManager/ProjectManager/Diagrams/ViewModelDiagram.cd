@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ProjectManager.ViewModels.ProjectDatabaseViewModel">
+    <Position X="2.5" Y="2.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AABEAAAAAAAQAEAAAQAAAAAAAAIEAAAEQAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ProjectDatabaseViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProjectManager.ViewModels.ProjectResourceDatabaseViewModel">
+    <Position X="6.5" Y="2.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAJEAAAAAAAQAEAAAQAACAAAAAAAAgAAQAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ProjectResourceDatabaseViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProjectManager.ViewModels.ProjTaskDatabaseViewModel">
+    <Position X="11.25" Y="2.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AABEAAAAEABQAEAAAQAAAEAAAAAAAAAAQAAAAIAgAAA=</HashCode>
+      <FileName>ViewModels\ProjTaskDatabaseViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="ProjectManager.Interfaces.IDatabaseViewModel&lt;T&gt;">
+    <Position X="6.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAQAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IDatabaseViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

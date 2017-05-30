@@ -14,7 +14,6 @@ namespace ProjectManager.Interfaces
         {
             get;
         }
-
         string Name
         {
             get; set;
