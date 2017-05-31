@@ -150,6 +150,7 @@ namespace ProjectManager.Views.ProjectPageTabs
                         FinishedProjectsPage.finishedProjs.Remove(proj);
                     }
                     await projectDatabase.DeleteItem(proj);
+                    await ViewModels.ProjTaskDatabaseViewModel.Instance().DeleteTasks(proj.ID);
                     await Navigation.PopModalAsync();
                 }
             }

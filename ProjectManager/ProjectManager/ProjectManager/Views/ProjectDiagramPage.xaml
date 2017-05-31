@@ -1,21 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:XamForms.Controls;assembly=XamForms.Controls.Calendar"
              x:Class="ProjectManager.Views.ProjectDiagramPage"
              Title="ProjectDiagramPage">
 
     <ScrollView>
         
         <StackLayout BackgroundColor="#395a73">
-            <Frame x:Name="pageTitleFrame" BackgroundColor="#2c4659" Margin="0,15,0,0">
-                <Label Text="Project diagram" TextColor="White" Font="Bold, 26" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            <Frame x:Name="pageTitleFrame" BackgroundColor="#2c4659">
+                <Label x:Name="pageTitle" TextColor="White" Font="Bold, 26" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
             </Frame>
 
-            <Label x:Name="projectDataDisplay" Margin="10,0,0,0" TextColor="White" FontAttributes="Bold" FontSize="17" />
+            <controls:Calendar x:Name="calendar" EnableTitleMonthYearView="True" TitleLeftArrowTextColor="White" TitleRightArrowTextColor="White" SelectedBorderColor="Black"
+                               TitleRightArrowIsVisible="True" TitleLabelTextColor="White" DateClicked="calendar_DateClicked" />
 
-            <ScrollView Orientation="Both">
-                <Grid x:Name="diagram" Margin="0,10,0,0">
-                </Grid>
+            <ScrollView>
+                <StackLayout x:Name="colorAgenda" Padding="10">
+                    <Label Text="Calendar colors: " TextColor="White" FontSize="18" />
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label HeightRequest="30" WidthRequest="30" BackgroundColor="#c6cdcf"  />
+                        <Label Text=" - Today" TextColor="White" FontSize="16" VerticalOptions="Center"  />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label HeightRequest="30" WidthRequest="30" BackgroundColor="#4db2ff"  />
+                        <Label Text=" - Task start date" TextColor="White" FontSize="16" VerticalOptions="Center"  />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label HeightRequest="30" WidthRequest="30" BackgroundColor="#FFFF3838"  />
+                        <Label Text=" - Task end date" TextColor="White" FontSize="16" VerticalOptions="Center"  />
+                    </StackLayout>
+                </StackLayout>
             </ScrollView>
 
             <Button x:Name="backButton" Clicked="backButton_Clicked" HorizontalOptions="Center" Margin="0,10,0,0" Text="Back" WidthRequest="135" HeightRequest="45" BackgroundColor="#2a4254" TextColor="White" />

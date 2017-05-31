@@ -69,5 +69,10 @@ namespace ProjectManager.Models
         {
             return database.QueryAsync<T>($"SELECT * FROM [ProjTask] WHERE [ProjectID] = {projectId} ORDER BY [StartDate] DESC");
         }
+
+        public Task DeleteProjectTasks(int projectID)
+        {
+            return database.QueryAsync<ProjTask>($"DELETE FROM [ProjTask] WHERE [ProjectID] = {projectID}");
+        }
     }
 }

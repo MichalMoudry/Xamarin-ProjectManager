@@ -71,5 +71,10 @@ namespace ProjectManager.ViewModels
         {
             return TaskDb.GetProjectsTasks<ProjTask>(projectID).Result;
         }
+
+        public Task DeleteTasks(int projectID)
+        {
+            return TaskDb.DeleteProjectTasks(projectID);
+        }
     }
 }

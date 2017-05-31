@@ -20,47 +20,46 @@ namespace ProjectManager.Views
         {
             InitializeComponent();
             tasks = new List<ProjTask>(
-                ProjTaskDatabaseViewModel.Instance().GetProjTasks(projectData.ID).OrderBy(i => i.ID)
+                ProjTaskDatabaseViewModel.Instance().GetUnfinishedTasks(projectData.ID).OrderBy(i => i.ID)
             );
-            projectDataDisplay.Text = $"Project: {projectData.Name}";
-
-            ColumnDefinition column = new ColumnDefinition
+            pageTitle.Text = $"{projectData.Name} - Calendar";
+            calendar.SpecialDates.Add(new XamForms.Controls.SpecialDate(DateTime.Now) { BackgroundColor = Color.FromHex("#c6cdcf"), Selectable = true });
+            
+            foreach (ProjTask item in tasks)
             {
-                Width = GridLength.Auto
-            };
-            diagram.ColumnDefinitions.Add(column);
-            for (int i = 0; i < ProjTaskDatabaseViewModel.Instance().GetProjTasks(projectData.ID).Count; i++)
-            {
-                //Adding row and column definitions.
-                RowDefinition row = new RowDefinition
-                {
-                    Height = GridLength.Auto
-                };
-                
-                diagram.RowDefinitions.Add(row);
-
-                //Creating label for task.
-                Label label = new Label();
-                label.Text = $"{tasks[i].IDinProject}.{tasks[i].Name}\nStart date: {tasks[i].StartDate} • End date: {tasks[i].EndDate} • Is Completed: {Convert.ToBoolean(tasks[i].IsCompleted)}";
-                label.TextColor = Color.White;
-                label.FontSize = 14;
-                label.HeightRequest = 55;
-                label.VerticalTextAlignment = TextAlignment.Center;
-                label.Margin = new Thickness(10 + (i * 20), 0, 10, 0);
-                label.BackgroundColor = Color.FromHex("#6088a6");
-
-                Grid.SetRow(label, i);
-                Grid.SetColumn(label, 0);
-                //Adding labels to grid.
-                diagram.Children.Add(label);
+                temp = item.StartDate.Split('.');
+                calendar.SpecialDates.Add(new XamForms.Controls.SpecialDate(new DateTime(Convert.ToInt32(temp[2]), Convert.ToInt32(temp[1]), Convert.ToInt32(temp[0])))
+                    { BackgroundColor = Color.FromHex("#4db2ff"), Selectable = true }
+                );
             }
         }
 
+        string[] temp;
         List<ProjTask> tasks;
 
         private async void backButton_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopModalAsync();
+        }
+
+        private void calendar_DateClicked(object sender, XamForms.Controls.DateTimeEventArgs e)
+        {
+            if (calendar.SelectedDate != null)
+            {
+                var tempObj = calendar.SelectedDate;
+                string events = "";
+                foreach (ProjTask item in tasks.Where(i => i.StartDate == $"{tempObj.Value.Day}.{tempObj.Value.Month}.{tempObj.Value.Year}"))
+                {
+                    events += $"{item.IDinProject}.{item.Name}\n";
+                }
+                DisplayAlert($"{tempObj.Value.Day}.{tempObj.Value.Month}.{tempObj.Value.Year}", events, "Cancel");
+            }
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            calendar.SpecialDates.Clear();
         }
     }
 }

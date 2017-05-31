@@ -83,7 +83,7 @@ namespace ProjectManager.Views.ProjectPageTabs
         {
             if (string.IsNullOrEmpty(taskName.Text).Equals(false) && 
                 taskStartDate != null && taskEndDate.Date != null && 
-                (taskEndDate.Date.CompareTo(taskStartDate.Date).Equals(1) || taskEndDate.Date.CompareTo(taskStartDate.Date).Equals(0)))
+                (taskEndDate.Date.CompareTo(taskStartDate.Date).Equals(-1).Equals(false) || taskEndDate.Date.CompareTo(taskStartDate.Date).Equals(0)))
             {
                 return true;
             }

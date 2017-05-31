@@ -70,13 +70,14 @@ namespace ProjectManager.Views.ResourcePageTabs
         {
             if (FormValidation())
             {
-                ResourcesPage.resources.Remove(projResource);
+                
                 projResource.Name = resourceNameEntry.Text;
                 projResource.Type = resourceTypePicker.SelectedItem as string;
                 projResource.ProjectID = Convert.ToInt32(resourceProjectEntry.Text);
                 projResource.Cost = Convert.ToInt32(resourceCostEntry.Text);
                 await ViewModels.ProjectResourceDatabaseViewModel.Instance().SaveItem(projResource);
                 await Navigation.PopModalAsync();
+                ResourcesPage.resources.Remove(projResource);
                 ResourcesPage.resources.Add(projResource);
             }
             else
