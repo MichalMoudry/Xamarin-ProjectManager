@@ -25,11 +25,16 @@ namespace ProjectManager.Views
             pageTitle.Text = $"{projectData.Name} - Calendar";
             calendar.SpecialDates.Add(new XamForms.Controls.SpecialDate(DateTime.Now) { BackgroundColor = Color.FromHex("#c6cdcf"), Selectable = true });
             
+            //Adding colors to calendar.
             foreach (ProjTask item in tasks)
             {
                 temp = item.StartDate.Split('.');
                 calendar.SpecialDates.Add(new XamForms.Controls.SpecialDate(new DateTime(Convert.ToInt32(temp[2]), Convert.ToInt32(temp[1]), Convert.ToInt32(temp[0])))
                     { BackgroundColor = Color.FromHex("#4db2ff"), Selectable = true }
+                );
+                temp = item.EndDate.Split('.');
+                calendar.SpecialDates.Add(new XamForms.Controls.SpecialDate(new DateTime(Convert.ToInt32(temp[2]), Convert.ToInt32(temp[1]), Convert.ToInt32(temp[0])))
+                    { BackgroundColor = Color.FromHex("#FFFF3838"), Selectable = true }
                 );
             }
         }
@@ -50,9 +55,16 @@ namespace ProjectManager.Views
                 string events = "";
                 foreach (ProjTask item in tasks.Where(i => i.StartDate == $"{tempObj.Value.Day}.{tempObj.Value.Month}.{tempObj.Value.Year}"))
                 {
-                    events += $"{item.IDinProject}.{item.Name}\n";
+                    events += $" {item.IDinProject}. {item.Name}  - Start date\n";
                 }
-                DisplayAlert($"{tempObj.Value.Day}.{tempObj.Value.Month}.{tempObj.Value.Year}", events, "Cancel");
+                foreach (ProjTask item in tasks.Where(i => i.EndDate == $"{tempObj.Value.Day}.{tempObj.Value.Month}.{tempObj.Value.Year}"))
+                {
+                    events += $" {item.IDinProject}. {item.Name}  - End date\n";
+                }
+                if (events.Equals("").Equals(false))
+                {
+                    DisplayAlert($"{tempObj.Value.Day}.{tempObj.Value.Month}.{tempObj.Value.Year}", events, "Cancel");
+                }
             }
         }
 
