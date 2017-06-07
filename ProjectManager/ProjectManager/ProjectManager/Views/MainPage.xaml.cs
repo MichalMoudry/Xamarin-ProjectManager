@@ -117,8 +117,6 @@ namespace ProjectManager.Views
                 projName.PlaceholderColor = Color.White;
                 projStartDate.TextColor = Color.White;
                 projEndDate.TextColor = Color.White;
-
-                //reloadButton.Image = "Assets/ReloadIcon_Material.png";
             }
         }
 
